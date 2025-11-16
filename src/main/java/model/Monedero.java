@@ -1,6 +1,6 @@
 package model;
 
-public class Monedero {
+public abstract class Monedero {
     String nombre;
     String id;
     double saldo;
