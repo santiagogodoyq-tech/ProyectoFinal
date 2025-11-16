@@ -10,6 +10,8 @@ module co.edu.uniquindio.poo.proyectofinal {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires annotations;
+    requires co.edu.uniquindio.poo.proyectofinal;
 
     opens co.edu.uniquindio.poo.proyectofinal to javafx.fxml;
     exports co.edu.uniquindio.poo.proyectofinal;

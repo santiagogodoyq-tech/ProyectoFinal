@@ -9,4 +9,8 @@ public class Oro extends Cuenta {
         this.descuento = 0.1;
         this.puntosMonedero += 50;
     }
+    @Override
+    public double asignarPorcentaje() {
+        return 0.025;
+    }
 }

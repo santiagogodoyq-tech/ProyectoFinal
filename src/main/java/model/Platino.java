@@ -11,5 +11,9 @@ public class Platino extends Cuenta{
         this.descuento = 0.5;
         this.puntosMonedero += 100;
     }
+    @Override
+    public double asignarPorcentaje() {
+        return 0.01;
+    }
 }
 

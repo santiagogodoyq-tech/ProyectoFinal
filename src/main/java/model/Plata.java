@@ -10,4 +10,8 @@ public class Plata extends Cuenta{
         this.descuento =0.05;
 
     }
+    @Override
+    public double asignarPorcentaje() {
+        return 0.05;
+    }
 }

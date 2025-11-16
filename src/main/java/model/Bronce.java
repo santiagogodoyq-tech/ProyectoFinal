@@ -8,4 +8,9 @@ public class Bronce extends Cuenta {
          this.descuento = 0.0;
      }
 
+    @Override
+    public double asignarPorcentaje() {
+        return 0.1;
+    }
+
 }
