@@ -7,7 +7,7 @@ public class Cliente {
     private String nombre;
     private String email;
     private String celular;
-    //private int puntos = 0; los puntos van en la cuenta, por que un clienta puede tener muchas cuentas diferentes
+
     private LinkedList<Cuenta> ListaCuentas;
     public Cliente(String id, String nombre, String email, String celular) {
         this.id = id;
