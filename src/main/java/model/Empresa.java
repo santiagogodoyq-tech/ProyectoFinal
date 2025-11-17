@@ -18,7 +18,7 @@ public class Empresa {
     private String nombre;
     private String direccion;
     private String NIT;
-
+    
     public Empresa(String nombre, String direccion, String NIT) {
         this.count = 0;
         this.nombre = nombre;
@@ -359,7 +359,7 @@ public class Empresa {
         LinkedList<Monedero> listaMonedero2 = cuenta2.getListaMonedero();
         double saldo2 = listaMonedero2.stream().filter(x -> x.getId().equals(id2)).findFirst().get().getSaldo();
         LocalDate fecha = LocalDate.now();
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
         long delay = Duration.between(fecha, fechaIngresada).toMillis();
         scheduler.schedule(() -> {
             transferir(monto, cuenta, cuenta2, fechaIngresada, id, id2);
