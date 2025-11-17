@@ -66,16 +66,10 @@ public class ClientController {
             return;
         }
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("inicio.fxml"));
-        Parent root = loader.load();
-
-        Stage stage = (Stage) btnRegistrar.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-
         Cliente nuevoCliente = new Cliente(id, nombre, email, celular, contrasena);
-
         AppData.empresa.agregarCliente(nuevoCliente);
+        mostrarAlerta(Alert.AlertType.INFORMATION,
+                AppData.empresa.getNombre());
 
         mostrarAlerta(Alert.AlertType.INFORMATION,
                 "Cliente registrado correctamente:\n" + nombre);
@@ -85,6 +79,12 @@ public class ClientController {
         inputEmail.clear();
         inputCelular.clear();
         inputContrasena.clear();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("inicio.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) btnRegistrar.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 

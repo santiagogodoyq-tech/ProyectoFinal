@@ -8,23 +8,22 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class ClienteController {
 
     @FXML private Button btnNuevaCuenta;
     @FXML private Button btnIniciarSesion;
-    @FXML private Label lblNombreCliente;
+    @FXML private Label labelcampo;
 
     @FXML
     public void initialize() {
-
+        if (AppData.clienteActual != null) {
+            labelcampo.setText("Bienvenido/a, " + AppData.clienteActual.getNombre());
+        }
         btnNuevaCuenta.setOnAction(e -> abrirVentana("client-register.fxml", btnNuevaCuenta));
         btnIniciarSesion.setOnAction(e -> abrirVentana("Login.fxml", btnIniciarSesion));
-    }
-
-    public void setNombreCliente(String nombre) {
-        lblNombreCliente.setText("Bienvenido, " + nombre);
     }
 
     private void abrirVentana(String ruta, Button boton) {

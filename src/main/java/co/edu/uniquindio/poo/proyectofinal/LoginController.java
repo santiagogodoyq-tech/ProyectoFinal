@@ -44,7 +44,7 @@ public class LoginController {
             return;
         }
 
-        Cuenta cuenta = empresa.buscarCuenta(documento).orElse(null);
+        Cliente cuenta = AppData.empresa.buscarCliente(documento).orElse(null);
 
         if (cuenta == null) {
             mostrarAlerta("Error", "No existe ninguna cuenta con ese documento.");
@@ -55,9 +55,14 @@ public class LoginController {
             mostrarAlerta("Error", "La contraseña es incorrecta.");
             return;
         }
+        Cliente cliente = AppData.empresa.buscarCliente(documento).orElse(null);
+
+        if (cliente != null) {
+            AppData.clienteActual = cliente;
+        }
 
         mostrarAlerta("Bienvenido", "Inicio de sesión exitoso.");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("client-register.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("cliente.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) btnLogin.getScene().getWindow();
@@ -73,10 +78,6 @@ public class LoginController {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("client-menu.fxml"));
         Parent root = loader.load();
-
-        // *** Pasar el nombre al controller ***
-        ClienteController controller = loader.getController();
-        controller.setNombreCliente(nombreCliente);
 
         Stage stage = (Stage) btnLogin.getScene().getWindow();
         stage.setScene(new Scene(root));

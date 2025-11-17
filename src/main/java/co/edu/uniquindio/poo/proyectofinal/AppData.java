@@ -1,20 +1,12 @@
 package co.edu.uniquindio.poo.proyectofinal;
 
-import model.Cliente;
-import model.Cuenta;
-import model.Bronce;
-import model.Empresa;
-
-import java.time.LocalDate;
+import model.*;
 
 public class AppData {
 
     public static Empresa empresa;
-    
-    public static void init() {
-
+    public static Cliente clienteActual;
+    static {
         empresa = new Empresa("Coint Master Bank", "washingtong", "12344");
-
     }
 }
-
