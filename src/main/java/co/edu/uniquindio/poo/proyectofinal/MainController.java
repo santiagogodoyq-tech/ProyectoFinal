@@ -10,9 +10,7 @@ import java.io.IOException;
 public class MainController {
 
     @FXML private Button btnRegistrarCliente;
-    @FXML private Button btnConsultarCliente;
-    @FXML private Button btnRealizarTransaccion;
-    @FXML private Button btnSalir;
+    @FXML private Button btnRegistradoCliente;
 
     @FXML
     public void initialize() {
@@ -23,7 +21,7 @@ public class MainController {
                 throw new RuntimeException(ex);
             }
         });
-        btnConsultarCliente.setOnAction(e -> {
+        btnRegistradoCliente.setOnAction(e -> {
             try {
                 abrirConsultar();
             } catch (IOException ex) {
