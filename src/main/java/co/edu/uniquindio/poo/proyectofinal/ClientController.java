@@ -1,8 +1,14 @@
 package co.edu.uniquindio.poo.proyectofinal;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import model.Cliente;
+
+import java.io.IOException;
 
 public class ClientController {
 
@@ -26,10 +32,16 @@ public class ClientController {
 
     @FXML
     public void initialize() {
-        btnRegistrar.setOnAction(event -> registrarCliente());
+        btnRegistrar.setOnAction(event -> {
+            try {
+                registrarCliente();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
-    private void registrarCliente() {
+    private void registrarCliente() throws IOException {
 
         String id = inputId.getText().trim();
         String nombre = inputNombre.getText().trim();
@@ -54,7 +66,16 @@ public class ClientController {
             return;
         }
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("inicio.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) btnRegistrar.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+
         Cliente nuevoCliente = new Cliente(id, nombre, email, celular, contrasena);
+
+        AppData.empresa.agregarCliente(nuevoCliente);
 
         mostrarAlerta(Alert.AlertType.INFORMATION,
                 "Cliente registrado correctamente:\n" + nombre);

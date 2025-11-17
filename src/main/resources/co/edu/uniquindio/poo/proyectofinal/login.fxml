@@ -10,8 +10,6 @@
             fx:controller="co.edu.uniquindio.poo.proyectofinal.LoginController">
 
     <children>
-
-        <!-- FONDO -->
         <ImageView fitHeight="500" fitWidth="800" preserveRatio="false"
                    AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
                    AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
@@ -20,7 +18,6 @@
             </image>
         </ImageView>
 
-        <!-- CONTENEDOR LOGIN -->
         <VBox alignment="CENTER"
               layoutX="200" layoutY="-10"
               prefHeight="420" prefWidth="400"

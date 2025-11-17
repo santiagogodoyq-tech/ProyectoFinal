@@ -25,10 +25,16 @@ public class LoginController {
 
     @FXML
     public void initialize() {
-        btnLogin.setOnAction(e -> login());
+        btnLogin.setOnAction(e -> {
+            try {
+                login();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 
-    private void login() {
+    private void login() throws IOException {
 
         String documento = inputDocumento.getText();
         String contraseña = inputContrasena.getText();
@@ -51,8 +57,32 @@ public class LoginController {
         }
 
         mostrarAlerta("Bienvenido", "Inicio de sesión exitoso.");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("client-register.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) btnLogin.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
 
     }
+
+    @FXML
+    private void iniciarSesion() throws IOException {
+
+        String nombreCliente = "";
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("client-menu.fxml"));
+        Parent root = loader.load();
+
+        // *** Pasar el nombre al controller ***
+        ClienteController controller = loader.getController();
+        controller.setNombreCliente(nombreCliente);
+
+        Stage stage = (Stage) btnLogin.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
 
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
