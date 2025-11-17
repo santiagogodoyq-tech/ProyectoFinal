@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.Cliente;
+import model.*;
 
 import java.io.IOException;
 
@@ -65,9 +65,13 @@ public class ClientController {
             mostrarAlerta(Alert.AlertType.ERROR, "El celular debe contener solo números.");
             return;
         }
-
+        String count = String.valueOf(AppData.count);
         Cliente nuevoCliente = new Cliente(id, nombre, email, celular, contrasena);
         AppData.empresa.agregarCliente(nuevoCliente);
+        Cuenta nuevoCuenta;
+        nuevoCuenta = new Bronce(nuevoCliente, count, nombre, contrasena);
+        AppData.empresa.agregarCuenta(nuevoCuenta);
+        AppData.count++;
         mostrarAlerta(Alert.AlertType.INFORMATION,
                 AppData.empresa.getNombre());
 

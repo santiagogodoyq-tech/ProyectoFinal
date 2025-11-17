@@ -62,7 +62,7 @@ public class LoginController {
         }
 
         mostrarAlerta("Bienvenido", "Inicio de sesión exitoso.");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("cliente.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("cuenta.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) btnLogin.getScene().getWindow();

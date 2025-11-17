@@ -3,7 +3,7 @@ package co.edu.uniquindio.poo.proyectofinal;
 import model.*;
 
 public class AppData {
-
+    public static int count = 0;
     public static Empresa empresa;
     public static Cliente clienteActual;
     static {
