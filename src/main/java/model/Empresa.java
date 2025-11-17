@@ -151,7 +151,6 @@ public class Empresa {
         ListaTransacciones.add(transaccion);
     }
 
-    //depositar dinero
     public void depositar(double monto, Cuenta cuenta, LocalDate fecha, String id) {
         LinkedList<Monedero> listaMonedero = cuenta.getListaMonedero();
         double saldo = listaMonedero.stream().filter(x -> x.getId().equals(id)).findFirst().get().getSaldo();
@@ -269,7 +268,7 @@ public class Empresa {
         double saldo2 = listaMonedero2.stream().filter(x -> x.getId().equals(id2)).findFirst().get().getSaldo();
         String idTrans = Integer.toString(count);
         if (monto > 0 && saldo >= monto) {
-            double nuevoSaldoOrigen = saldo - monto - (saldo * cuenta.getPorcentajeTran());
+            double nuevoSaldoOrigen = saldo - monto - (monto * cuenta.getPorcentajeTran());
             double nuevoSaldoDestino = saldo2 + monto;
             listaMonedero.forEach(x -> {
                 if (x.getId().equals(id)) {
@@ -322,31 +321,35 @@ public class Empresa {
         Cuenta cuentaExp = cuenta;
         int puntos = cuenta.getPuntosMonedero();
         if (puntos <= 500 && !(cuenta instanceof Bronce)) {
-            Cuenta nuevaCuenta = new Bronce(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre(), saldo);
+            Cuenta nuevaCuenta = new Bronce(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre());
             cuentaExp = nuevaCuenta;
             cuentaExp.setPuntosMonedero(cuenta.getPuntosMonedero());
             cuentaExp.setListaTransacciones(cuenta.getListaTransacciones());
+            cuentaExp.setListaMonedero(cuenta.getListaMonedero());
             ListaCuentas.remove(cuenta);
             ListaCuentas.add(cuentaExp);
         } else if (puntos > 500 && puntos <= 1000 && !(cuenta instanceof Plata)) {
-            Cuenta nuevaCuenta = new Plata(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre(), saldo);
+            Cuenta nuevaCuenta = new Plata(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre());
             cuentaExp = nuevaCuenta;
             cuentaExp.setPuntosMonedero(cuenta.getPuntosMonedero());
             cuentaExp.setListaTransacciones(cuenta.getListaTransacciones());
+            cuentaExp.setListaMonedero(cuenta.getListaMonedero());
             ListaCuentas.remove(cuenta);
             ListaCuentas.add(cuentaExp);
         } else if (puntos > 1000 && puntos <= 5000 && !(cuenta instanceof Oro)) {
-            Cuenta nuevaCuenta = new Oro(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre(), saldo);
+            Cuenta nuevaCuenta = new Oro(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre());
             cuentaExp = nuevaCuenta;
             cuentaExp.setPuntosMonedero(cuenta.getPuntosMonedero());
             cuentaExp.setListaTransacciones(cuenta.getListaTransacciones());
+            cuentaExp.setListaMonedero(cuenta.getListaMonedero());
             ListaCuentas.remove(cuenta);
             ListaCuentas.add(cuentaExp);
         } else if (puntos <= 5000 && !(cuenta instanceof Platino)) {
-            Cuenta nuevaCuenta = new Platino(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre(), saldo);
+            Cuenta nuevaCuenta = new Platino(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre());
             cuentaExp = nuevaCuenta;
             cuentaExp.setPuntosMonedero(cuenta.getPuntosMonedero());
             cuentaExp.setListaTransacciones(cuenta.getListaTransacciones());
+            cuentaExp.setListaMonedero(cuenta.getListaMonedero());
             ListaCuentas.remove(cuenta);
             ListaCuentas.add(cuentaExp);
         }
