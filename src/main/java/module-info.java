@@ -11,7 +11,9 @@ module co.edu.uniquindio.poo.proyectofinal {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires annotations;
-    requires co.edu.uniquindio.poo.proyectofinal;
+
+    // Añade aquí jakarta.mail
+    requires jakarta.mail;
 
     opens co.edu.uniquindio.poo.proyectofinal to javafx.fxml;
     exports co.edu.uniquindio.poo.proyectofinal;

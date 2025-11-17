@@ -172,6 +172,12 @@ public class Empresa {
             );
 
             cuenta.getListaRegistroPuntos().add(registro);
+            EmailService emailService = new EmailService();
+            emailService.enviarCorreo(
+                    cuenta.getCliente().getEmail(),
+                    "Depósito realizado",
+                    "Se ha depositado $" + monto + " en el monedero " +listaMonedero.stream().filter(x -> x.getId().equals(id)).findFirst().get().getId()
+            );
 
         } else {
             System.out.println("el monto a depositar debe ser mayor a 0");
@@ -231,6 +237,12 @@ public class Empresa {
                         cuenta.getPuntosMonedero() + (int) (monto / 100),
                         transaccion
                 );
+                EmailService emailService = new EmailService();
+                emailService.enviarCorreo(
+                        cuenta.getCliente().getEmail(),  // correo del dueño
+                        "Retiro realizado",
+                        "Se ha realizado un retiro de $" + monto + " en su monedero " + listaMonedero.stream().filter(x -> x.getId().equals(id)).findFirst().get().getId()
+                );
             } else {
                 System.out.println("el monto a retirar debe ser mayor a 0");
             }
@@ -283,6 +295,23 @@ public class Empresa {
                     transaccion
             );
             cuenta.setPuntosMonedero(cuenta.getPuntosMonedero() + (int) ((monto / 100) * 3));
+            EmailService emailService = new EmailService();
+
+            emailService.enviarCorreo(
+                    cuenta.getCliente().getEmail(),
+                    "Transferencia realizada",
+                    "Has transferido $" + monto +
+                            " desde el monedero " + listaMonedero.stream().filter(x -> x.getId().equals(id)).findFirst().get().getId() +
+                            " a la cuenta " + cuenta.getCodigo()
+            );
+            emailService.enviarCorreo(
+                    cuenta2.getCliente().getEmail(),
+                    "Has recibido una transferencia",
+                    "Has recibido $" + monto +
+                            " en el monedero " + listaMonedero2.stream().filter(x -> x.getId().equals(id2)).findFirst().get().getId() +
+                            " proveniente de la cuenta " + cuenta2.getCodigo()
+            );
+
         } else {
             System.out.println("el monto a transferir debe ser mayor a 0");
         }
