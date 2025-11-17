@@ -24,9 +24,9 @@
               </ImageView>
 
 
-                <Button fx:id="btnRegistrarCliente" prefHeight="37.0" prefWidth="300.0" style="-fx-font-size: 16px; -fx-background-color: #D4AF37; -fx-text-fill: black; -fx-background-radius: 8;" text="Registrar cliente" />
+                <Button fx:id="btnRegistrarCliente" onAction="#initialize" prefHeight="37.0" prefWidth="300.0" style="-fx-font-size: 16px; -fx-background-color: #D4AF37; -fx-text-fill: black; -fx-background-radius: 8;" text="Registrar cliente" />
 
-                <Button fx:id="btnRegistradoCliente" prefWidth="300" style="-fx-font-size: 16px; -fx-background-color: #D4AF37; -fx-text-fill: black; -fx-background-radius: 8;" text="Cliente Registrado" />
+                <Button fx:id="btnRegistradoCliente" onAction="#initialize" prefWidth="300" style="-fx-font-size: 16px; -fx-background-color: #D4AF37; -fx-text-fill: black; -fx-background-radius: 8;" text="Cliente Registrado" />
             <Label text="CONTACTANOS: pointmasterbank@gmail.com" textFill="#D3B889" />
 
             </children>
