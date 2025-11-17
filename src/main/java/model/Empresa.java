@@ -18,7 +18,6 @@ public class Empresa {
     private String nombre;
     private String direccion;
     private String NIT;
-    private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     public Empresa(String nombre, String direccion, String NIT) {
         this.count = 0;
@@ -360,7 +359,7 @@ public class Empresa {
         LinkedList<Monedero> listaMonedero2 = cuenta2.getListaMonedero();
         double saldo2 = listaMonedero2.stream().filter(x -> x.getId().equals(id2)).findFirst().get().getSaldo();
         LocalDate fecha = LocalDate.now();
-        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
         long delay = Duration.between(fecha, fechaIngresada).toMillis();
         scheduler.schedule(() -> {
             transferir(monto, cuenta, cuenta2, fechaIngresada, id, id2);
@@ -450,6 +449,7 @@ public class Empresa {
     }
 
     public void iniciarVerificadorBeneficios() {
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
         scheduler.scheduleAtFixedRate(() -> {
             for (Cuenta cuenta : ListaCuentas) {
                 if (cuenta.getBeneficioActivo() != null &&
