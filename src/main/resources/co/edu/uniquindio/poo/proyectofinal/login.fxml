@@ -29,18 +29,15 @@
 
             <children>
 
-                <!-- LOGO -->
                 <ImageView fitHeight="60" fitWidth="70">
                     <image>
                         <Image url="@logo.jpg"/>
                     </image>
                 </ImageView>
 
-                <!-- TÍTULO -->
                 <Label text="Iniciar Sesión"
                        style="-fx-font-size: 26px; -fx-text-fill: #D4AF37; -fx-font-weight: bold;"/>
 
-                <!-- DOCUMENTO -->
                 <VBox spacing="5">
                     <Label text="Documento"
                            style="-fx-text-fill: #D4AF37;"/>
@@ -48,7 +45,6 @@
                                promptText="Ingrese su documento"/>
                 </VBox>
 
-                <!-- CONTRASEÑA -->
                 <VBox spacing="5">
                     <Label text="Contraseña"
                            style="-fx-text-fill: #D4AF37;"/>
@@ -56,7 +52,6 @@
                                    promptText="Ingrese su contraseña"/>
                 </VBox>
 
-                <!-- BOTÓN -->
                 <Button fx:id="btnLogin"
                         text="Ingresar"
                         prefWidth="220"

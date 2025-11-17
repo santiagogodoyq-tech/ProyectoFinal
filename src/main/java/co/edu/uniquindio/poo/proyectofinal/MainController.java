@@ -1,7 +1,11 @@
 package co.edu.uniquindio.poo.proyectofinal;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+
+import java.io.IOException;
 
 public class MainController {
 
@@ -12,22 +16,31 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        btnRegistrarCliente.setOnAction(e -> abrirRegistrarCliente());
-        btnConsultarCliente.setOnAction(e -> abrirConsultar());
-        btnRealizarTransaccion.setOnAction(e -> abrirTransaccion());
-        btnSalir.setOnAction(e -> System.exit(0));
+        btnRegistrarCliente.setOnAction(e -> {
+            try {
+                abrirRegistrarCliente();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        btnConsultarCliente.setOnAction(e -> {
+            try {
+                abrirConsultar();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 
-    private void abrirRegistrarCliente() {
-        // Cargar escena RegistrarCliente.fxml
+    private void abrirRegistrarCliente() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("client-register.fxml"));
+        Parent root = loader.load();
+
     }
 
-    private void abrirConsultar() {
-        // ...
-    }
-
-    private void abrirTransaccion() {
-        // ...
+    private void abrirConsultar() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        Parent root = loader.load();
     }
 }
 
