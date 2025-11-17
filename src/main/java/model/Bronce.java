@@ -1,8 +1,8 @@
 package model;
 
 public class Bronce extends Cuenta {
-     public Bronce( Cliente cliente, String codigo, String nombre){
-         super(cliente, codigo, nombre);
+     public Bronce( Cliente cliente, String codigo, String nombre, String contraseña){
+         super(cliente, codigo, nombre, contraseña);
      }
      public void aplicarDescuento (){
          this.descuento = 0.0;

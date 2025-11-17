@@ -1,8 +1,8 @@
 package model;
 
 public class Platino extends Cuenta{
-    public Platino(Cliente cliente, String codigo, String nombre){
-        super(cliente, codigo, nombre);
+    public Platino(Cliente cliente, String codigo, String nombre, String contraseña){
+        super(cliente, codigo, nombre, contraseña);
 
     }
 

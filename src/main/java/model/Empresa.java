@@ -321,7 +321,7 @@ public class Empresa {
         Cuenta cuentaExp = cuenta;
         int puntos = cuenta.getPuntosMonedero();
         if (puntos <= 500 && !(cuenta instanceof Bronce)) {
-            Cuenta nuevaCuenta = new Bronce(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre());
+            Cuenta nuevaCuenta = new Bronce(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre(), cuenta.getContraseña());
             cuentaExp = nuevaCuenta;
             cuentaExp.setPuntosMonedero(cuenta.getPuntosMonedero());
             cuentaExp.setListaTransacciones(cuenta.getListaTransacciones());
@@ -329,7 +329,7 @@ public class Empresa {
             ListaCuentas.remove(cuenta);
             ListaCuentas.add(cuentaExp);
         } else if (puntos > 500 && puntos <= 1000 && !(cuenta instanceof Plata)) {
-            Cuenta nuevaCuenta = new Plata(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre());
+            Cuenta nuevaCuenta = new Plata(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre(), cuenta.getContraseña());
             cuentaExp = nuevaCuenta;
             cuentaExp.setPuntosMonedero(cuenta.getPuntosMonedero());
             cuentaExp.setListaTransacciones(cuenta.getListaTransacciones());
@@ -337,7 +337,7 @@ public class Empresa {
             ListaCuentas.remove(cuenta);
             ListaCuentas.add(cuentaExp);
         } else if (puntos > 1000 && puntos <= 5000 && !(cuenta instanceof Oro)) {
-            Cuenta nuevaCuenta = new Oro(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre());
+            Cuenta nuevaCuenta = new Oro(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre(), cuenta.getContraseña());
             cuentaExp = nuevaCuenta;
             cuentaExp.setPuntosMonedero(cuenta.getPuntosMonedero());
             cuentaExp.setListaTransacciones(cuenta.getListaTransacciones());
@@ -345,7 +345,7 @@ public class Empresa {
             ListaCuentas.remove(cuenta);
             ListaCuentas.add(cuentaExp);
         } else if (puntos <= 5000 && !(cuenta instanceof Platino)) {
-            Cuenta nuevaCuenta = new Platino(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre());
+            Cuenta nuevaCuenta = new Platino(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre(), cuenta.getContraseña());
             cuentaExp = nuevaCuenta;
             cuentaExp.setPuntosMonedero(cuenta.getPuntosMonedero());
             cuentaExp.setListaTransacciones(cuenta.getListaTransacciones());
