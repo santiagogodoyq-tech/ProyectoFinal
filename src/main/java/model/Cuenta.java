@@ -20,7 +20,7 @@ public abstract class Cuenta {
 
 
 
-    public Cuenta(Cliente cliente, String codigo, String nombre) {
+    public Cuenta(Cliente cliente, String codigo, String nombre, String contraseña) {
         this.cliente = cliente;
         this.codigo = codigo;
         this.nombre = nombre;
