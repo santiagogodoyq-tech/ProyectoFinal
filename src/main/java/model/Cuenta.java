@@ -14,6 +14,7 @@ public abstract class Cuenta {
     protected double porcentajeTran;
     protected String beneficioActivo;
     protected LocalDate fechaExpiracionBeneficio;
+    protected LinkedList<RegistroPuntos> ListaRegistroPuntos;
 
 
     public Cuenta(Cliente cliente, String codigo, String nombre) {
@@ -25,6 +26,16 @@ public abstract class Cuenta {
         this.ListaTransacciones = new LinkedList<>();
         this.descuento = 0;
         this.porcentajeTran = asignarPorcentaje();
+        this.fechaExpiracionBeneficio = LocalDate.now();
+        this.ListaRegistroPuntos = new LinkedList<>();
+    }
+
+    public LinkedList<RegistroPuntos> getListaRegistroPuntos() {
+        return ListaRegistroPuntos;
+    }
+
+    public void setListaRegistroPuntos(LinkedList<RegistroPuntos> listaRegistroPuntos) {
+        ListaRegistroPuntos = listaRegistroPuntos;
     }
 
     public double getPorcentajeTran() {

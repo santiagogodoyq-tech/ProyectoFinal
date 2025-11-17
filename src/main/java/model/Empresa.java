@@ -14,7 +14,7 @@ public class Empresa {
     private int count;
     private LinkedList<Cliente> ListaClientes;
     private LinkedList<Cuenta> ListaCuentas;
-    private LinkedList<Transaccion> ListaTransacciones; //lo vamos a hacer con gmail o con whatsapp lo de enviar mensaje?
+    private LinkedList<Transaccion> ListaTransacciones;
     private String nombre;
     private String direccion;
     private String NIT;
@@ -156,10 +156,22 @@ public class Empresa {
     public void depositar(double monto, Cuenta cuenta, LocalDate fecha, String id) {
         LinkedList<Monedero> listaMonedero = cuenta.getListaMonedero();
         double saldo = listaMonedero.stream().filter(x -> x.getId().equals(id)).findFirst().get().getSaldo();
+        String idTrans = Integer.toString(count);
         if (monto > 0) {
             saldo += monto;
             cuenta.setPuntosMonedero(cuenta.getPuntosMonedero() + (int) (monto / 100));
             agregarTransaccion(cuenta, monto, fecha);
+            Transaccion transaccion = ListaTransacciones.stream()
+                    .filter(x -> x.getId().equals(idTrans))
+                    .findFirst()
+                    .orElse(null);
+
+            RegistroPuntos registro = new RegistroPuntos(
+                    cuenta.getPuntosMonedero() + (int) (monto / 100),
+                    transaccion
+            );
+
+            cuenta.getListaRegistroPuntos().add(registro);
 
         } else {
             System.out.println("el monto a depositar debe ser mayor a 0");
@@ -172,6 +184,7 @@ public class Empresa {
         Optional<Monedero> monedero = listaMonedero.stream().filter(x -> x.getId().equals(id)).findFirst();
         Monedero monedero1 = monedero.orElse(null);
         boolean funcionar = false;
+        String idTrans = Integer.toString(count);
         if (monedero1 instanceof MonederoAhorro) {
             funcionar = ((MonederoAhorro) monedero1).retirar(cuenta);
         }
@@ -186,6 +199,15 @@ public class Empresa {
                 cuenta.setListaMonedero(listaMonedero);
                 cuenta.setPuntosMonedero(cuenta.getPuntosMonedero() + (int) (monto / 100) * 2);
                 agregarTransaccion(cuenta, monto, fecha);
+                Transaccion transaccion = ListaTransacciones.stream()
+                        .filter(x -> x.getId().equals(idTrans))
+                        .findFirst()
+                        .orElse(null);
+
+                RegistroPuntos registro = new RegistroPuntos(
+                        cuenta.getPuntosMonedero() + (int) (monto / 100),
+                        transaccion
+                );
             } else {
                 System.out.println("el monto a retirar debe ser mayor a 0");
             }
@@ -200,6 +222,15 @@ public class Empresa {
                 cuenta.setListaMonedero(listaMonedero);
                 cuenta.setPuntosMonedero(cuenta.getPuntosMonedero() + (int) (monto / 100) * 2);
                 agregarTransaccion(cuenta, monto, fecha);
+                Transaccion transaccion = ListaTransacciones.stream()
+                        .filter(x -> x.getId().equals(idTrans))
+                        .findFirst()
+                        .orElse(null);
+
+                RegistroPuntos registro = new RegistroPuntos(
+                        cuenta.getPuntosMonedero() + (int) (monto / 100),
+                        transaccion
+                );
             } else {
                 System.out.println("el monto a retirar debe ser mayor a 0");
             }
@@ -225,6 +256,7 @@ public class Empresa {
         double saldo = listaMonedero.stream().filter(x -> x.getId().equals(id)).findFirst().get().getSaldo();
         LinkedList<Monedero> listaMonedero2 = cuenta2.getListaMonedero();
         double saldo2 = listaMonedero2.stream().filter(x -> x.getId().equals(id2)).findFirst().get().getSaldo();
+        String idTrans = Integer.toString(count);
         if (monto > 0 && saldo >= monto) {
             double nuevoSaldoOrigen = saldo - monto - (saldo * cuenta.getPorcentajeTran());
             double nuevoSaldoDestino = saldo2 + monto;
@@ -241,6 +273,15 @@ public class Empresa {
             });
             cuenta2.setListaMonedero(listaMonedero2);
             agregarTransaccion(cuenta, cuenta2, monto, fecha);
+            Transaccion transaccion = ListaTransacciones.stream()
+                    .filter(x -> x.getId().equals(idTrans))
+                    .findFirst()
+                    .orElse(null);
+
+            RegistroPuntos registro = new RegistroPuntos(
+                    cuenta.getPuntosMonedero() + (int) (monto / 100),
+                    transaccion
+            );
             cuenta.setPuntosMonedero(cuenta.getPuntosMonedero() + (int) ((monto / 100) * 3));
         } else {
             System.out.println("el monto a transferir debe ser mayor a 0");
