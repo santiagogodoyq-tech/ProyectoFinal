@@ -7,23 +7,27 @@ public class Cliente {
     private String nombre;
     private String email;
     private String celular;
-
+    private String contraseña;
     private LinkedList<Cuenta> ListaCuentas;
-    public Cliente(String id, String nombre, String email, String celular) {
+
+
+    public Cliente(String id, String nombre, String email, String celular, String contraseña) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.celular = celular;
+        this.contraseña = contraseña;
         this.ListaCuentas = new LinkedList<>();
-    }
 
-    public String getId() {
-        return id;
     }
+    public String getContraseña() {return contraseña;}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public void setContraseña(String contraseña) {this.contraseña = contraseña;}
+
+
+    public String getId() {return id;}
+
+    public void setId(String id) {this.id = id;}
 
     public String getNombre() {
         return nombre;
