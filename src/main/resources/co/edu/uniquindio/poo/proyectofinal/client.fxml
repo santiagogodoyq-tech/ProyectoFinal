@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <DatePicker layoutX="306.0" layoutY="71.0" />
+      <DatePicker layoutX="306.0" layoutY="124.0" />
+      <DatePicker layoutX="64.0" layoutY="71.0" />
+      <DatePicker layoutX="64.0" layoutY="124.0" />
+      <Label layoutX="14.0" layoutY="6.0" text="bienvenido a Point Master Bank" />
+      <Label layoutX="14.0" layoutY="24.0" text="por favor ingrese sus datos de cliente" />
+      <Label layoutX="64.0" layoutY="54.0" text="nombre" />
+      <Label layoutX="306.0" layoutY="54.0" text="documento de identidad" />
+      <Label layoutX="64.0" layoutY="107.0" text="gmail" />
+      <Label layoutX="306.0" layoutY="107.0" text="celular" />
+      <ImageView blendMode="SRC_ATOP" fitHeight="400.0" fitWidth="610.0" layoutX="-5.0">
+         <image>
+            <Image url="@ChatGPT%20Image%2016%20nov%202025,%2014_57_14.png" />
+         </image>
+         <viewport>
+            <Rectangle2D height="1313.0" />
+         </viewport>
+      </ImageView>
+      <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <DatePicker layoutX="306.0" layoutY="71.0" />
+            <DatePicker layoutX="306.0" layoutY="124.0" />
+            <DatePicker layoutX="64.0" layoutY="71.0" />
+            <DatePicker layoutX="64.0" layoutY="124.0" />
+            <Label layoutX="14.0" layoutY="6.0" text="bienvenido a Point Master Bank" textFill="#d4af37" />
+            <Label layoutX="14.0" layoutY="24.0" text="por favor ingrese sus datos de cliente" textFill="#d4af37" />
+            <Label layoutX="64.0" layoutY="54.0" text="nombre" textFill="#d4af37" />
+            <Label layoutX="306.0" layoutY="54.0" text="documento de identidad" textFill="#d4af37" />
+            <Label layoutX="64.0" layoutY="107.0" text="gmail" textFill="#d4af37" />
+            <Label layoutX="306.0" layoutY="107.0" text="celular" textFill="#d4af37" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
