@@ -2,11 +2,13 @@ package co.edu.uniquindio.poo.proyectofinal;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.*;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.LinkedList;
 
@@ -31,11 +33,11 @@ public class CuentaController {
 
     @FXML
     public void initialize() {
-        btnDepositar.setOnAction(e -> abrirVentanaDeposito());
-        btnRetirar.setOnAction(e -> abrirVentanaRetiro());
-        btnTransferir.setOnAction(e -> abrirVentanaTransferencia());
-        btnHistorialTransacciones.setOnAction(e -> abrirHistorialTransacciones());
-        btnHistorialPuntos.setOnAction(e -> abrirHistorialPuntos());
+        btnDepositar.setOnAction(e -> {abrirVentanaDeposito(); cerrarSesion();});
+        btnRetirar.setOnAction(e -> {abrirVentanaRetiro();cerrarSesion();});
+        btnTransferir.setOnAction(e -> {abrirVentanaTransferencia();cerrarSesion();});
+        btnHistorialTransacciones.setOnAction(e -> {abrirHistorialTransacciones();cerrarSesion();});
+        btnHistorialPuntos.setOnAction(e -> {abrirHistorialPuntos();cerrarSesion();});
         btnCanjearPuntos.setOnAction(e -> abrirCanje());
         btnCerrarSesion.setOnAction(e -> cerrarSesion());
         setCliente();
@@ -93,6 +95,11 @@ public class CuentaController {
 
     private void abrirCanje() {
         abrirVentana("canjear_puntos.fxml", "Canje de Puntos");
+    }
+    @FXML
+    private void cerrarVentana() throws IOException {
+        Stage stage = (Stage) btnCerrarSesion.getScene().getWindow(); // sirve cualquiera
+        stage.close();
     }
 
     private void abrirVentana(String fxml, String titulo) {

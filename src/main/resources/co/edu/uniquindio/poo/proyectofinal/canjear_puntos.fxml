@@ -1,40 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="15" alignment="CENTER" xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="co.edu.uniquindio.poo.proyectofinal.CanjearPuntosController">
+<VBox alignment="CENTER" spacing="15" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.proyectofinal.CanjearPuntosController">
 
     <padding>
-        <Insets top="20" left="20" right="20" bottom="20"/>
+        <Insets bottom="20" left="20" right="20" top="20" />
     </padding>
 
-    <Label text="Canjear Puntos" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    <Label fx:id="labelResultado" style="-fx-text-fill: #0077cc; -fx-font-size: 14px;" />
+    <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Canjear Puntos" />
 
-    <Label fx:id="labelPuntos" text="Puntos actuales: 0"/>
+    <Label fx:id="labelPuntos" text="Puntos actuales: 0" />
 
     <HBox spacing="10">
-        <Label text="Seleccione Monedero:"/>
-        <ComboBox fx:id="comboMonedero" prefWidth="200"/>
+        <Label text="Seleccione Monedero:" />
+        <ComboBox fx:id="comboMonedero" prefWidth="200" />
     </HBox>
 
-    <!-- ⭐ NUEVA SECCIÓN: Seleccionar Beneficio -->
     <HBox spacing="10">
-        <Label text="Beneficio:"/>
-        <ComboBox fx:id="comboBeneficio" prefWidth="200"/>
+        <Label text="Beneficio:" />
+        <ComboBox fx:id="comboBeneficio" prefWidth="200" />
     </HBox>
 
-    <!-- ⚠️ Ya NO necesitarás este TextField, pero lo dejamos por si sigues usándolo -->
     <HBox spacing="10">
-        <Label text="Puntos a canjear (si no usa ComboBox):"/>
-        <TextField fx:id="inputPuntos" promptText="Ej: 100 | 500 | 1000"/>
+        <Label text="puntos 100 = descuento 10%                      puntos 500 = retiros gratuitos                      puntos 1000 = bono dinero" />
+
     </HBox>
 
-    <Button text="Canjear" onAction="#canjear"/>
-
-    <Label fx:id="labelResultado" style="-fx-text-fill: #0077cc; -fx-font-size: 14px;"/>
+    <Button onAction="#canjear" text="Canjear" />
 
 </VBox>

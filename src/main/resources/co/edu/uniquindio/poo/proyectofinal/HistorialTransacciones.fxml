@@ -11,7 +11,6 @@
 
     <children>
 
-        <!-- Fondo -->
         <ImageView fitWidth="800" fitHeight="500" preserveRatio="false"
                    AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0">
             <image>
@@ -25,7 +24,6 @@
             <Label text="Historial de Transacciones"
                    style="-fx-font-size: 26px; -fx-text-fill: #D4AF37; -fx-font-weight: bold;"/>
 
-            <!-- TABLA -->
             <TableView fx:id="tablaTrans" prefWidth="700" prefHeight="350">
 
                 <columns>
@@ -47,7 +45,6 @@
                     prefWidth="150"/>
         </VBox>
 
-        <!-- Logo -->
         <ImageView fitHeight="70" fitWidth="70" layoutX="720" layoutY="10">
             <image>
                 <Image url="@logo.jpg"/>

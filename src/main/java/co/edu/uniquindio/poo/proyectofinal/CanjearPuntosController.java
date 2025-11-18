@@ -9,6 +9,7 @@ import java.util.LinkedList;
 
 public class CanjearPuntosController {
 
+
     @FXML
     private ComboBox<String> comboMonedero;
 
@@ -19,24 +20,27 @@ public class CanjearPuntosController {
     private Label labelPuntos;
 
     @FXML
-    private TextField inputPuntos;
-
-    @FXML
     private Label labelResultado;
     protected Cuenta cuenta;
 
+    public void initialize(){
+        setCuenta();
+    }
 
     public void setCuenta() {
         LinkedList<Cuenta> listaCuentas = AppData.clienteActual.getListaCuentas();
         cuenta = listaCuentas.stream().findFirst().orElse(null);
         labelPuntos.setText("Puntos actuales: " + cuenta.getPuntosMonedero());
 
-        // Cargar monederos
         for (Monedero m : cuenta.getListaMonedero()) {
-            comboMonedero.getItems().add(m.getId());
+            String si = "";
+            if(m.getId().equals("1")){
+                si = "Diario";
+            }else{
+                si = "Ahorro";
+            }
+            comboMonedero.getItems().add(si);
         }
-
-        // ⭐ Cargar beneficios disponibles
         comboBeneficio.getItems().addAll(100, 500, 1000);
     }
 

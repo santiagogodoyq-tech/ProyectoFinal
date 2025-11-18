@@ -19,7 +19,6 @@
                 <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
 
-            <!-- Logo + Nombre -->
             <HBox alignment="CENTER_LEFT" spacing="15">
 
                 <ImageView fitHeight="55" fitWidth="55" preserveRatio="true" smooth="true">
@@ -42,7 +41,6 @@
         </HBox>
     </top>
 
-    <!-- ===================  CENTER CONTENT  =================== -->
     <center>
         <VBox alignment="TOP_CENTER" spacing="35">
 
@@ -50,7 +48,6 @@
                 <Insets bottom="30" left="30" right="30" top="30" />
             </padding>
 
-            <!-- Saldo / Monederos -->
             <HBox alignment="CENTER" spacing="25">
 
                 <VBox alignment="CENTER_LEFT" prefWidth="260" spacing="10" style="                         -fx-background-color: rgba(255,255,255,0.85);                         -fx-padding: 20;                         -fx-background-radius: 12;                         -fx-effect: dropshadow(gaussian, #0003, 10, 0.3, 0, 2);                       ">
@@ -69,7 +66,6 @@
 
             </HBox>
 
-            <!-- Operaciones -->
             <VBox alignment="CENTER" prefWidth="754.0" spacing="20">
 
                 <Label style="-fx-font-size: 22px;                               -fx-font-weight: bold;                               -fx-text-fill: white;" text="Operaciones" />

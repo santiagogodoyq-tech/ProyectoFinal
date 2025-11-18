@@ -14,6 +14,7 @@ public class LoginController {
     @FXML private TextField inputDocumento;
     @FXML private PasswordField inputContrasena;
     @FXML private Button btnLogin;
+    @FXML private Button btnVolver;
 
     private Empresa empresa;
     private Stage stage;
@@ -32,6 +33,7 @@ public class LoginController {
                 throw new RuntimeException(ex);
             }
         });
+        btnVolver.setOnAction(e -> volver());
     }
 
     private void login() throws IOException {
@@ -83,7 +85,27 @@ public class LoginController {
         stage.setScene(new Scene(root));
         stage.show();
     }
+    private void volver() {
+        try {
+            Stage stageAct = (Stage) btnVolver.getScene().getWindow(); // sirve cualquiera
+            stageAct.close();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("inicio.fxml"));
+            Scene scene = new Scene(loader.load());
 
+            Stage stage = (Stage) btnVolver.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            mostrar("Error", "No se pudo cargar Cuenta.fxml");
+        }
+    }
+    private void mostrar(String t, String m) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(t);
+        alert.setContentText(m);
+        alert.show();
+    }
 
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

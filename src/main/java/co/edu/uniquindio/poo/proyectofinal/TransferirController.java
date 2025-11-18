@@ -36,7 +36,6 @@ public class TransferirController {
             return;
         }
 
-        // Cargar la cuenta principal del cliente
         LinkedList<Cuenta> lista = cliente.getListaCuentas();
         cuenta = lista.stream().findFirst().orElse(null);
 
@@ -44,7 +43,6 @@ public class TransferirController {
             labelEstado.setText("No se encontró la cuenta del cliente.");
         }
 
-        // El DatePicker inicia oculto
         boxFecha.setVisible(false);
         boxFecha.setManaged(false);
     }
@@ -62,7 +60,7 @@ public class TransferirController {
             cuentaDestino = null;
             return;
         }
-        cuentaDestino = empresa.buscarCuenta(id).orElse(null);
+        cuentaDestino = AppData.empresa.buscarCuenta(id).orElse(null);
     }
 
     @FXML
