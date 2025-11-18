@@ -4,55 +4,38 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500" prefWidth="800"
-            xmlns="http://javafx.com/javafx/17.0.12"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="co.edu.uniquindio.poo.proyectofinal.LoginController">
+<AnchorPane prefHeight="500" prefWidth="800" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.proyectofinal.LoginController">
 
     <children>
-        <ImageView fitHeight="500" fitWidth="800" preserveRatio="false"
-                   AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
-                   AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <ImageView fitHeight="500" fitWidth="800" preserveRatio="false" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
             <image>
                 <Image url="@background.png" />
             </image>
         </ImageView>
 
-        <VBox alignment="CENTER"
-              layoutX="200" layoutY="-10"
-              prefHeight="420" prefWidth="400"
-              spacing="15"
-              style="-fx-background-color: rgba(0,0,0,0.45); -fx-background-radius: 14; -fx-padding: 20;">
+        <VBox alignment="CENTER" layoutX="200" layoutY="-10" prefHeight="420" prefWidth="400" spacing="15" style="-fx-background-color: rgba(0,0,0,0.45); -fx-background-radius: 14; -fx-padding: 20;">
 
             <children>
 
                 <ImageView fitHeight="60" fitWidth="70">
                     <image>
-                        <Image url="@logo.jpg"/>
+                        <Image url="@logo.jpg" />
                     </image>
                 </ImageView>
 
-                <Label text="Iniciar Sesión"
-                       style="-fx-font-size: 26px; -fx-text-fill: #D4AF37; -fx-font-weight: bold;"/>
+                <Label style="-fx-font-size: 26px; -fx-text-fill: #D4AF37; -fx-font-weight: bold;" text="Iniciar Sesión" />
 
                 <VBox spacing="5">
-                    <Label text="Documento"
-                           style="-fx-text-fill: #D4AF37;"/>
-                    <TextField fx:id="inputDocumento"
-                               promptText="Ingrese su documento"/>
+                    <Label style="-fx-text-fill: #D4AF37;" text="Documento" />
+                    <TextField fx:id="inputDocumento" promptText="Ingrese su documento" />
                 </VBox>
 
                 <VBox spacing="5">
-                    <Label text="Contraseña"
-                           style="-fx-text-fill: #D4AF37;"/>
-                    <PasswordField fx:id="inputContrasena"
-                                   promptText="Ingrese su contraseña"/>
+                    <Label style="-fx-text-fill: #D4AF37;" text="Contraseña" />
+                    <PasswordField fx:id="inputContrasena" promptText="Ingrese su contraseña" />
                 </VBox>
 
-                <Button fx:id="btnLogin"
-                        text="Ingresar"
-                        prefWidth="220"
-                        style="-fx-font-size: 16px; -fx-background-color: #D4AF37; -fx-text-fill: black; -fx-background-radius: 8;"/>
+                <Button fx:id="btnLogin" onAction="#initialize" prefWidth="220" style="-fx-font-size: 16px; -fx-background-color: #D4AF37; -fx-text-fill: black; -fx-background-radius: 8;" text="Ingresar" />
 
             </children>
         </VBox>

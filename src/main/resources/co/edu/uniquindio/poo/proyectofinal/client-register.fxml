@@ -51,7 +51,7 @@
                     <PasswordField fx:id="inputContrasena" promptText="Ingrese contraseña" />
                 </VBox>
 
-                <Button fx:id="btnRegistrar" prefWidth="220" style="-fx-font-size: 16px; -fx-background-color: #D4AF37; -fx-text-fill: black; -fx-background-radius: 8;" text="Registrar" />
+                <Button fx:id="btnRegistrar" onAction="#initialize" prefWidth="220" style="-fx-font-size: 16px; -fx-background-color: #D4AF37; -fx-text-fill: black; -fx-background-radius: 8;" text="Registrar" />
 
             </children>
         </VBox>

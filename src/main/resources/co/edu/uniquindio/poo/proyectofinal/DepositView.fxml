@@ -1,34 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.*?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<AnchorPane prefHeight="500" prefWidth="800"
-            xmlns="http://javafx.com/javafx/17.0.12"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="co.edu.uniquindio.poo.proyectofinal.DepositoController">
+<AnchorPane prefHeight="500" prefWidth="800" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.proyectofinal.DepositoController">
 
     <children>
 
         <!-- Fondo -->
-        <ImageView fitHeight="500" fitWidth="800" preserveRatio="false"
-                   AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
-                   AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <ImageView fitHeight="500" fitWidth="800" preserveRatio="false" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
             <image>
                 <Image url="@background.png" />
             </image>
         </ImageView>
 
         <!-- Panel principal -->
-        <VBox alignment="CENTER"
-              layoutX="200" layoutY="-10"
-              prefHeight="420" prefWidth="400"
-              spacing="15"
-              style="-fx-background-color: rgba(0,0,0,0.45); -fx-background-radius: 14; -fx-padding: 25;">
+        <VBox alignment="CENTER" layoutX="200" layoutY="-10" prefHeight="420" prefWidth="400" spacing="15" style="-fx-background-color: rgba(0,0,0,0.45); -fx-background-radius: 14; -fx-padding: 25;">
 
             <children>
 
@@ -38,18 +28,16 @@
                     </image>
                 </ImageView>
 
-                <Label text="Depositar Dinero"
-                       style="-fx-font-size: 26px; -fx-text-fill: #D4AF37; -fx-font-weight: bold;"/>
+                <Label style="-fx-font-size: 26px; -fx-text-fill: #D4AF37; -fx-font-weight: bold;" text="Depositar Dinero" />
 
                 <!-- Selección de cuenta -->
                 <VBox spacing="5">
-                    <Label text="Seleccione una cuenta"
-                           style="-fx-text-fill: #D4AF37;" />
+                    <Label style="-fx-text-fill: #D4AF37;" text="Seleccione una cuenta" />
                     <ComboBox fx:id="comboCuenta" prefWidth="250">
                         <items>
                             <FXCollections fx:factory="observableArrayList">
-                                <String fx:value="Monedero Diario"/>
-                                <String fx:value="Monedero Ahorros"/>
+                                <String fx:value="Monedero Diario" />
+                                <String fx:value="Monedero Ahorros" />
                             </FXCollections>
                         </items>
                     </ComboBox>
@@ -57,22 +45,15 @@
 
                 <!-- Monto -->
                 <VBox spacing="5">
-                    <Label text="Monto a depositar"
-                           style="-fx-text-fill: #D4AF37;" />
+                    <Label style="-fx-text-fill: #D4AF37;" text="Monto a depositar" />
                     <TextField fx:id="inputMonto" promptText="Ej: 50000" />
                 </VBox>
 
                 <!-- Botones -->
                 <HBox alignment="CENTER" spacing="20">
-                    <Button fx:id="btnConfirmar"
-                            text="Depositar"
-                            prefWidth="150"
-                            style="-fx-font-size: 16px; -fx-background-color: #D4AF37; -fx-text-fill: black; -fx-background-radius: 8;"/>
+                    <Button fx:id="btnConfirmar" onAction="#realizarDeposito" prefWidth="150" style="-fx-font-size: 16px; -fx-background-color: #D4AF37; -fx-text-fill: black; -fx-background-radius: 8;" text="Depositar" />
 
-                    <Button fx:id="btnVolver"
-                            text="Volver"
-                            prefWidth="120"
-                            style="-fx-font-size: 16px; -fx-background-color: #162447; -fx-text-fill: white; -fx-background-radius: 8;"/>
+                    <Button fx:id="btnVolver" onAction="#initialize" prefWidth="120" style="-fx-font-size: 16px; -fx-background-color: #162447; -fx-text-fill: white; -fx-background-radius: 8;" text="Volver" />
                 </HBox>
 
             </children>

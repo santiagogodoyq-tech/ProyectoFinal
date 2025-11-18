@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="650" prefWidth="1000" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="co.edu.uniquindio.poo.proyectofinal.CuentaController">
+<BorderPane prefHeight="650" prefWidth="1000" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.proyectofinal.CuentaController">
     <ImageView fx:id="fondo" fitHeight="650" fitWidth="1000" pickOnBounds="true" preserveRatio="false">
         <image>
             <Image url="@background.png" />
@@ -38,7 +38,7 @@
 
             <Pane HBox.hgrow="ALWAYS" />
 
-            <Button fx:id="btnCerrarSesion" style="                         -fx-background-color: #e94560;                         -fx-text-fill: white;                         -fx-font-size: 14px;                         -fx-font-weight: bold;                         -fx-padding: 10 20;                         -fx-background-radius: 10;                     " text="Cerrar Sesión" />
+            <Button fx:id="btnCerrarSesion" onAction="#initialize" style="                         -fx-background-color: #e94560;                         -fx-text-fill: white;                         -fx-font-size: 14px;                         -fx-font-weight: bold;                         -fx-padding: 10 20;                         -fx-background-radius: 10;                     " text="Cerrar Sesión" />
         </HBox>
     </top>
 
@@ -76,21 +76,21 @@
 
                 <HBox alignment="CENTER" spacing="25">
 
-                    <Button fx:id="btnDepositar" prefHeight="45" prefWidth="180" style="-fx-background-color: #1f4068;                                    -fx-text-fill: white;                                    -fx-font-size: 16px;                                    -fx-background-radius: 10;" text="Depositar" />
+                    <Button fx:id="btnDepositar" onAction="#initialize" prefHeight="45" prefWidth="180" style="-fx-background-color: #1f4068;                                    -fx-text-fill: white;                                    -fx-font-size: 16px;                                    -fx-background-radius: 10;" text="Depositar" />
 
-                    <Button fx:id="btnRetirar" prefHeight="45" prefWidth="180" style="-fx-background-color: #1b1b2f;                                    -fx-text-fill: white;                                    -fx-font-size: 16px;                                    -fx-background-radius: 10;" text="Retirar" />
+                    <Button fx:id="btnRetirar" onAction="#initialize" prefHeight="45" prefWidth="180" style="-fx-background-color: #1b1b2f;                                    -fx-text-fill: white;                                    -fx-font-size: 16px;                                    -fx-background-radius: 10;" text="Retirar" />
 
-                    <Button fx:id="btnTransferir" prefHeight="45" prefWidth="180" style="-fx-background-color: #0091d5;                                    -fx-text-fill: white;                                    -fx-font-size: 16px;                                    -fx-background-radius: 10;" text="Transferir" />
+                    <Button fx:id="btnTransferir" onAction="#initialize" prefHeight="45" prefWidth="180" style="-fx-background-color: #0091d5;                                    -fx-text-fill: white;                                    -fx-font-size: 16px;                                    -fx-background-radius: 10;" text="Transferir" />
                 </HBox>
 
                 <HBox alignment="CENTER" spacing="25">
 
-                    <Button fx:id="btnHistorialTransacciones" prefHeight="45" prefWidth="220" style="-fx-background-color: #162447;                                    -fx-text-fill: white;                                    -fx-font-size: 15px;                                    -fx-background-radius: 10;" text="Historial de Transacciones" />
+                    <Button fx:id="btnHistorialTransacciones" onAction="#initialize" prefHeight="45" prefWidth="220" style="-fx-background-color: #162447;                                    -fx-text-fill: white;                                    -fx-font-size: 15px;                                    -fx-background-radius: 10;" text="Historial de Transacciones" />
 
-                    <Button fx:id="btnHistorialPuntos" prefHeight="45" prefWidth="220" style="-fx-background-color: #162447;                                    -fx-text-fill: white;                                    -fx-font-size: 15px;                                    -fx-background-radius: 10;" text="Historial de Puntos" />
+                    <Button fx:id="btnHistorialPuntos" onAction="#initialize" prefHeight="45" prefWidth="220" style="-fx-background-color: #162447;                                    -fx-text-fill: white;                                    -fx-font-size: 15px;                                    -fx-background-radius: 10;" text="Historial de Puntos" />
                 </HBox>
 
-                <Button fx:id="btnCanjearPuntos" prefHeight="50" prefWidth="300" style="-fx-background-color: #ffd86b;                                -fx-text-fill: #333;                                -fx-font-size: 17px;                                -fx-font-weight: bold;                                -fx-background-radius: 14;" text="Canjear Puntos" />
+                <Button fx:id="btnCanjearPuntos" onAction="#initialize" prefHeight="50" prefWidth="300" style="-fx-background-color: #ffd86b;                                -fx-text-fill: #333;                                -fx-font-size: 17px;                                -fx-font-weight: bold;                                -fx-background-radius: 14;" text="Canjear Puntos" />
             </VBox>
 
         </VBox>

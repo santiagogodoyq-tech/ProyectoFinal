@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400" prefWidth="600" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="co.edu.uniquindio.poo.proyectofinal.HistorialPuntosController">
+<AnchorPane prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.proyectofinal.HistorialPuntosController">
 
     <TableView fx:id="tablaPuntos" layoutX="25" layoutY="25" prefHeight="300" prefWidth="550">
 
@@ -16,6 +15,6 @@
 
     </TableView>
 
-    <Button fx:id="btnVolver" layoutX="250" layoutY="340" prefWidth="100" text="Volver" />
+    <Button fx:id="btnVolver" layoutX="250" layoutY="340" onAction="#initialize" prefWidth="100" text="Volver" />
 
 </AnchorPane>
