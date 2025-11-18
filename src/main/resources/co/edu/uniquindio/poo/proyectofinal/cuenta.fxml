@@ -1,185 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="co.edu.uniquindio.poo.proyectofinal.ClienteController"
-            prefWidth="1000" prefHeight="650"
-            style="
-                -fx-background-image: url('@background.png');
-                -fx-background-size: cover;
-                -fx-background-position: center;
-            ">
+<BorderPane prefHeight="650" prefWidth="1000" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="co.edu.uniquindio.poo.proyectofinal.CuentaController">
+    <ImageView fx:id="fondo" fitHeight="650" fitWidth="1000" pickOnBounds="true" preserveRatio="false">
+        <image>
+            <Image url="@background.png" />
+        </image>
+    </ImageView>
 
     <top>
-        <HBox spacing="25"
-              alignment="CENTER_LEFT"
-              style="-fx-background-color: linear-gradient(to right, #162447, #1f4068);">
+        <HBox alignment="CENTER_LEFT" spacing="25" style="-fx-background-color: linear-gradient(to right, #162447, #1f4068);">
 
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
 
             <!-- Logo + Nombre -->
-            <HBox spacing="15" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="15">
 
-                <ImageView fitWidth="55" fitHeight="55"
-                           preserveRatio="true"
-                           smooth="true">
+                <ImageView fitHeight="55" fitWidth="55" preserveRatio="true" smooth="true">
                     <image>
-                        <Image url="@logo.jpg"/>
+                        <Image url="@logo.jpg" />
                     </image>
                 </ImageView>
 
                 <VBox spacing="2">
-                    <Label fx:id="lblNombreCliente"
-                           text="Nombre Cliente"
-                           style="-fx-text-fill: white;
-                                  -fx-font-size: 24px;
-                                  -fx-font-weight: bold;"/>
+                    <Label fx:id="lblNombreCliente" style="-fx-text-fill: white;                                   -fx-font-size: 24px;                                   -fx-font-weight: bold;" text="Nombre Cliente" />
 
-                    <Label fx:id="lblRango"
-                           text="Rango: Bronce"
-                           style="-fx-text-fill: #ffd86b;
-                                  -fx-font-size: 16px;"/>
+                    <Label fx:id="lblRango" style="-fx-text-fill: #ffd86b;                                   -fx-font-size: 16px;" text="Rango: Bronce" />
                 </VBox>
 
             </HBox>
 
-            <Pane HBox.hgrow="ALWAYS"/>
+            <Pane HBox.hgrow="ALWAYS" />
 
-            <Button fx:id="btnCerrarSesion"
-                    text="Cerrar Sesión"
-                    style="
-                        -fx-background-color: #e94560;
-                        -fx-text-fill: white;
-                        -fx-font-size: 14px;
-                        -fx-font-weight: bold;
-                        -fx-padding: 10 20;
-                        -fx-background-radius: 10;
-                    "/>
+            <Button fx:id="btnCerrarSesion" style="                         -fx-background-color: #e94560;                         -fx-text-fill: white;                         -fx-font-size: 14px;                         -fx-font-weight: bold;                         -fx-padding: 10 20;                         -fx-background-radius: 10;                     " text="Cerrar Sesión" />
         </HBox>
     </top>
 
     <!-- ===================  CENTER CONTENT  =================== -->
     <center>
-        <VBox spacing="35" alignment="TOP_CENTER">
+        <VBox alignment="TOP_CENTER" spacing="35">
 
             <padding>
-                <Insets top="30" right="30" bottom="30" left="30"/>
+                <Insets bottom="30" left="30" right="30" top="30" />
             </padding>
 
             <!-- Saldo / Monederos -->
-            <HBox spacing="25" alignment="CENTER">
+            <HBox alignment="CENTER" spacing="25">
 
-                <VBox prefWidth="260"
-                      spacing="10"
-                      alignment="CENTER_LEFT"
-                      style="
-                        -fx-background-color: rgba(255,255,255,0.85);
-                        -fx-padding: 20;
-                        -fx-background-radius: 12;
-                        -fx-effect: dropshadow(gaussian, #0003, 10, 0.3, 0, 2);
-                      ">
+                <VBox alignment="CENTER_LEFT" prefWidth="260" spacing="10" style="                         -fx-background-color: rgba(255,255,255,0.85);                         -fx-padding: 20;                         -fx-background-radius: 12;                         -fx-effect: dropshadow(gaussian, #0003, 10, 0.3, 0, 2);                       ">
 
-                    <Label text="Monedero Principal"
-                           style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Monedero Principal" />
 
-                    <Label fx:id="lblSaldoPrincipal"
-                           text="0.00"
-                           style="-fx-font-size: 22px;
-                                  -fx-font-weight: bold;
-                                  -fx-text-fill: #1f4068;"/>
+                    <Label fx:id="lblSaldoPrincipal" style="-fx-font-size: 22px;                                   -fx-font-weight: bold;                                   -fx-text-fill: #1f4068;" text="0.00" />
                 </VBox>
 
-                <VBox prefWidth="260"
-                      spacing="10"
-                      alignment="CENTER_LEFT"
-                      style="
-                        -fx-background-color: rgba(255,255,255,0.85);
-                        -fx-padding: 20;
-                        -fx-background-radius: 12;
-                        -fx-effect: dropshadow(gaussian, #0003, 10, 0.3, 0, 2);
-                      ">
+                <VBox alignment="CENTER_LEFT" prefWidth="260" spacing="10" style="                         -fx-background-color: rgba(255,255,255,0.85);                         -fx-padding: 20;                         -fx-background-radius: 12;                         -fx-effect: dropshadow(gaussian, #0003, 10, 0.3, 0, 2);                       ">
 
-                    <Label text="Cuenta de Ahorros"
-                           style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Cuenta de Ahorros" />
 
-                    <Label fx:id="lblSaldoAhorros"
-                           text="0.00"
-                           style="-fx-font-size: 22px;
-                                  -fx-font-weight: bold;
-                                  -fx-text-fill: #1f4068;"/>
+                    <Label fx:id="lblSaldoAhorros" style="-fx-font-size: 22px;                                   -fx-font-weight: bold;                                   -fx-text-fill: #1f4068;" text="0.00" />
                 </VBox>
 
             </HBox>
 
             <!-- Operaciones -->
-            <VBox spacing="20" alignment="CENTER">
+            <VBox alignment="CENTER" prefWidth="754.0" spacing="20">
 
-                <Label text="Operaciones"
-                       style="-fx-font-size: 22px;
-                              -fx-font-weight: bold;
-                              -fx-text-fill: white;"/>
+                <Label style="-fx-font-size: 22px;                               -fx-font-weight: bold;                               -fx-text-fill: white;" text="Operaciones" />
 
-                <HBox spacing="25" alignment="CENTER">
+                <HBox alignment="CENTER" spacing="25">
 
-                    <Button fx:id="btnDepositar"
-                            text="Depositar"
-                            prefWidth="180" prefHeight="45"
-                            style="-fx-background-color: #1f4068;
-                                   -fx-text-fill: white;
-                                   -fx-font-size: 16px;
-                                   -fx-background-radius: 10;"/>
+                    <Button fx:id="btnDepositar" prefHeight="45" prefWidth="180" style="-fx-background-color: #1f4068;                                    -fx-text-fill: white;                                    -fx-font-size: 16px;                                    -fx-background-radius: 10;" text="Depositar" />
 
-                    <Button fx:id="btnRetirar"
-                            text="Retirar"
-                            prefWidth="180" prefHeight="45"
-                            style="-fx-background-color: #1b1b2f;
-                                   -fx-text-fill: white;
-                                   -fx-font-size: 16px;
-                                   -fx-background-radius: 10;"/>
+                    <Button fx:id="btnRetirar" prefHeight="45" prefWidth="180" style="-fx-background-color: #1b1b2f;                                    -fx-text-fill: white;                                    -fx-font-size: 16px;                                    -fx-background-radius: 10;" text="Retirar" />
 
-                    <Button fx:id="btnTransferir"
-                            text="Transferir"
-                            prefWidth="180" prefHeight="45"
-                            style="-fx-background-color: #0091d5;
-                                   -fx-text-fill: white;
-                                   -fx-font-size: 16px;
-                                   -fx-background-radius: 10;"/>
+                    <Button fx:id="btnTransferir" prefHeight="45" prefWidth="180" style="-fx-background-color: #0091d5;                                    -fx-text-fill: white;                                    -fx-font-size: 16px;                                    -fx-background-radius: 10;" text="Transferir" />
                 </HBox>
 
-                <HBox spacing="25" alignment="CENTER">
+                <HBox alignment="CENTER" spacing="25">
 
-                    <Button fx:id="btnHistorialTransacciones"
-                            text="Historial de Transacciones"
-                            prefWidth="220" prefHeight="45"
-                            style="-fx-background-color: #162447;
-                                   -fx-text-fill: white;
-                                   -fx-font-size: 15px;
-                                   -fx-background-radius: 10;"/>
+                    <Button fx:id="btnHistorialTransacciones" prefHeight="45" prefWidth="220" style="-fx-background-color: #162447;                                    -fx-text-fill: white;                                    -fx-font-size: 15px;                                    -fx-background-radius: 10;" text="Historial de Transacciones" />
 
-                    <Button fx:id="btnHistorialPuntos"
-                            text="Historial de Puntos"
-                            prefWidth="220" prefHeight="45"
-                            style="-fx-background-color: #162447;
-                                   -fx-text-fill: white;
-                                   -fx-font-size: 15px;
-                                   -fx-background-radius: 10;"/>
+                    <Button fx:id="btnHistorialPuntos" prefHeight="45" prefWidth="220" style="-fx-background-color: #162447;                                    -fx-text-fill: white;                                    -fx-font-size: 15px;                                    -fx-background-radius: 10;" text="Historial de Puntos" />
                 </HBox>
 
-                <Button fx:id="btnCanjearPuntos"
-                        text="Canjear Puntos"
-                        prefWidth="300" prefHeight="50"
-                        style="-fx-background-color: #ffd86b;
-                               -fx-text-fill: #333;
-                               -fx-font-size: 17px;
-                               -fx-font-weight: bold;
-                               -fx-background-radius: 14;"/>
+                <Button fx:id="btnCanjearPuntos" prefHeight="50" prefWidth="300" style="-fx-background-color: #ffd86b;                                -fx-text-fill: #333;                                -fx-font-size: 17px;                                -fx-font-weight: bold;                                -fx-background-radius: 14;" text="Canjear Puntos" />
             </VBox>
 
         </VBox>
