@@ -76,7 +76,7 @@ public class LoginController {
 
         String nombreCliente = "";
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("client-menu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("cuenta.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) btnLogin.getScene().getWindow();

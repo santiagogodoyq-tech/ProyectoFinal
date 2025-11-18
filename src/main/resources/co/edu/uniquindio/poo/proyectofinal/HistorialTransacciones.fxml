@@ -40,7 +40,8 @@
 
             </TableView>
 
-            <Button text="Volver"
+            <Button fx:id="btnVolver"
+                    text="Volver"
                     onAction="#volver"
                     style="-fx-background-color: #D4AF37; -fx-text-fill: black; -fx-background-radius: 8;"
                     prefWidth="150"/>

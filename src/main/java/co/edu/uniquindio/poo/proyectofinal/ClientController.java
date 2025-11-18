@@ -68,6 +68,7 @@ public class ClientController {
         String count = String.valueOf(AppData.count);
         Cliente nuevoCliente = new Cliente(id, nombre, email, celular, contrasena);
         AppData.empresa.agregarCliente(nuevoCliente);
+        AppData.clienteActual = nuevoCliente;
         Cuenta nuevoCuenta;
         nuevoCuenta = new Bronce(nuevoCliente, count, nombre, contrasena);
         AppData.empresa.agregarCuenta(nuevoCuenta);

@@ -5,12 +5,15 @@ import javafx.scene.control.*;
 import model.Cuenta;
 import model.Monedero;
 
-import static co.edu.uniquindio.poo.proyectofinal.AppData.empresa;
+import java.util.LinkedList;
 
 public class CanjearPuntosController {
 
     @FXML
     private ComboBox<String> comboMonedero;
+
+    @FXML
+    private ComboBox<Integer> comboBeneficio;
 
     @FXML
     private Label labelPuntos;
@@ -20,35 +23,36 @@ public class CanjearPuntosController {
 
     @FXML
     private Label labelResultado;
+    protected Cuenta cuenta;
 
-    private Cuenta cuenta; // ESTA se pasa desde la escena anterior
 
-    // ============================
-    //   MÉTODO PARA RECIBIR LA CUENTA
-    // ============================
-    public void setCuenta(Cuenta cuenta) {
-        this.cuenta = cuenta;
-
-        // Mostrar puntos
+    public void setCuenta() {
+        LinkedList<Cuenta> listaCuentas = AppData.clienteActual.getListaCuentas();
+        cuenta = listaCuentas.stream().findFirst().orElse(null);
         labelPuntos.setText("Puntos actuales: " + cuenta.getPuntosMonedero());
 
-        // Llenar combo con los id de los monederos
+        // Cargar monederos
         for (Monedero m : cuenta.getListaMonedero()) {
             comboMonedero.getItems().add(m.getId());
         }
+
+        // ⭐ Cargar beneficios disponibles
+        comboBeneficio.getItems().addAll(100, 500, 1000);
     }
 
-    // ============================
-    //   CANJEAR BENEFICIO
-    // ============================
     @FXML
     private void canjear() {
         try {
             String idMonedero = comboMonedero.getValue();
-            int puntos = Integer.parseInt(inputPuntos.getText());
+            Integer puntos = comboBeneficio.getValue();
 
             if (idMonedero == null) {
                 labelResultado.setText("Seleccione un monedero.");
+                return;
+            }
+
+            if (puntos == null) {
+                labelResultado.setText("Seleccione un beneficio.");
                 return;
             }
 
@@ -56,11 +60,10 @@ public class CanjearPuntosController {
 
             labelResultado.setText(respuesta);
 
-            // actualizar puntos visualmente
             labelPuntos.setText("Puntos actuales: " + cuenta.getPuntosMonedero());
 
         } catch (Exception e) {
-            labelResultado.setText("Error: ingrese un número válido.");
+            labelResultado.setText("Ocurrió un error.");
         }
     }
 }

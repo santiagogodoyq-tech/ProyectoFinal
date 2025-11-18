@@ -136,4 +136,6 @@ public abstract class Cuenta {
     public abstract void aplicarDescuento ();
     public abstract double asignarPorcentaje();
     public abstract String setRango();
+
+    public abstract void setRango(String rango);
 }

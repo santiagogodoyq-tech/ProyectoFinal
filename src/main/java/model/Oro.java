@@ -17,4 +17,9 @@ public class Oro extends Cuenta {
     public String setRango() {
         return "Oro";
     }
+
+    @Override
+    public void setRango(String rango) {
+
+    }
 }

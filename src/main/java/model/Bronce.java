@@ -16,4 +16,9 @@ public class Bronce extends Cuenta {
     public String setRango() {
          return "Bronce";
     }
+
+    @Override
+    public void setRango(String rango) {
+
+    }
 }

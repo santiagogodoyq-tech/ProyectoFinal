@@ -119,6 +119,7 @@ public class RetiroController {
 
         inputMonto.clear();
         comboCuenta.getSelectionModel().clearSelection();
+        volver();
     }
 
     private void volver() {

@@ -18,4 +18,9 @@ public class Plata extends Cuenta{
     public String setRango() {
         return "Plata";
     }
+
+    @Override
+    public void setRango(String rango) {
+
+    }
 }

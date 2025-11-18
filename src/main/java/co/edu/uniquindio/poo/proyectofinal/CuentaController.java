@@ -31,21 +31,6 @@ public class CuentaController {
 
     @FXML
     public void initialize() {
-
-        cliente = AppData.clienteActual;
-
-        if (cliente == null) {
-            mostrarAlerta("Error grave", "No hay cliente en sesión.");
-            return;
-        }
-        LinkedList<Cuenta> listaCuenta = cliente.getListaCuentas();
-        Cuenta cuenta = listaCuenta.stream().findFirst().orElse(null);
-
-        actualizarVista();
-
-        // ========================
-        //   EVENTOS DE BOTONES
-        // ========================
         btnDepositar.setOnAction(e -> abrirVentanaDeposito());
         btnRetirar.setOnAction(e -> abrirVentanaRetiro());
         btnTransferir.setOnAction(e -> abrirVentanaTransferencia());
@@ -55,19 +40,37 @@ public class CuentaController {
         btnCerrarSesion.setOnAction(e -> cerrarSesion());
     }
 
-    // =========================================
-    //   ACTUALIZA LABELS Y DATOS EN LA PANTALLA
-    // =========================================
+    public void setCliente(Cliente cliente) {
+
+        this.cliente = cliente;
+        cliente = AppData.clienteActual;
+
+        if (cliente == null) {
+            mostrarAlerta("Error grave", "No hay cliente en sesión.");
+            return;
+        }else {  LinkedList<Cuenta> listaCuenta = cliente.getListaCuentas();
+        this.cuenta = listaCuenta.stream().findFirst().orElse(null);}
+        actualizarRango();
+        actualizarVista();
+    }
+
     private void actualizarVista() {
+        LinkedList<Cuenta> listaCuenta = cliente.getListaCuentas();
+        Cuenta cuenta = listaCuenta.stream().findFirst().orElse(null);
 
         lblNombreCliente.setText(cliente.getNombre());
-        lblRango.setText("Rango: " + cuenta.getRango());
+
         LinkedList<Monedero> listaMonedero = cuenta.getListaMonedero();
         String id = "1";
         String id1 = "2";
-        lblSaldoPrincipal.setText(String.format("$ %.2f", listaMonedero.stream().filter(x->x.getId().equals(id)).findFirst().get().getSaldo()));
-        lblSaldoAhorros.setText(String.format("$ %.2f", listaMonedero.stream().filter(x->x.getId().equals(id1)).findFirst().get().getSaldo()));
+
+        lblSaldoPrincipal.setText(String.format("$ %.2f",
+                listaMonedero.stream().filter(x -> x.getId().equals(id)).findFirst().get().getSaldo()));
+
+        lblSaldoAhorros.setText(String.format("$ %.2f",
+                listaMonedero.stream().filter(x -> x.getId().equals(id1)).findFirst().get().getSaldo()));
     }
+
 
     private void abrirVentanaDeposito() {
         abrirVentana("DepositView.fxml", "Depositar Dinero");
@@ -90,12 +93,12 @@ public class CuentaController {
     }
 
     private void abrirCanje() {
-        abrirVentana("canje.fxml", "Canje de Puntos");
+        abrirVentana("canjear_puntos.fxml", "Canje de Puntos");
     }
 
     private void abrirVentana(String fxml, String titulo) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/poo/proyectofinal/"+fxml));
             Stage stage = new Stage();
             stage.setTitle(titulo);
             stage.setScene(new Scene(loader.load()));

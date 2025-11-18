@@ -19,5 +19,10 @@ public class Platino extends Cuenta{
     public String setRango() {
         return "Platino";
     }
+
+    @Override
+    public void setRango(String rango) {
+
+    }
 }
 
