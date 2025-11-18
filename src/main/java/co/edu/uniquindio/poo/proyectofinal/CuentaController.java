@@ -127,4 +127,23 @@ public class CuentaController {
         alert.setContentText(msg);
         alert.showAndWait();
     }
+    private void actualizarRango() {
+        int puntos = cuenta.getPuntosMonedero();
+
+        String rango;
+        if (puntos >= 1000) {
+            rango = "Platino";
+        } else if (puntos >= 500) {
+            rango = "Oro";
+        } else if (puntos >= 200) {
+            rango = "Plata";
+        } else {
+            rango = "Bronce";
+        }
+
+        cuenta.setRango(rango);
+        lblRango.setText("Rango: " + rango);
+    }
+
+
 }

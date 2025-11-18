@@ -21,8 +21,15 @@
         <ComboBox fx:id="comboMonedero" prefWidth="200"/>
     </HBox>
 
+    <!-- ⭐ NUEVA SECCIÓN: Seleccionar Beneficio -->
     <HBox spacing="10">
-        <Label text="Puntos a canjear:"/>
+        <Label text="Beneficio:"/>
+        <ComboBox fx:id="comboBeneficio" prefWidth="200"/>
+    </HBox>
+
+    <!-- ⚠️ Ya NO necesitarás este TextField, pero lo dejamos por si sigues usándolo -->
+    <HBox spacing="10">
+        <Label text="Puntos a canjear (si no usa ComboBox):"/>
         <TextField fx:id="inputPuntos" promptText="Ej: 100 | 500 | 1000"/>
     </HBox>
 
