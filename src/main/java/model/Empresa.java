@@ -173,7 +173,7 @@ public class Empresa {
 
         double saldo = monedero.getSaldo();
 
-        boolean permitir = true;
+        boolean permitir = false;
         if (monedero instanceof MonederoAhorro) {
             permitir = ((MonederoAhorro) monedero).retirar(cuenta);
         }
@@ -187,7 +187,7 @@ public class Empresa {
             System.out.println("Saldo insuficiente");
             return;
         }
-        if(permitir){
+        if(!permitir){
             monedero.setSaldo(saldo - monto);
 
             int puntosGanados = (int) (monto / 100) * 2;
@@ -196,7 +196,7 @@ public class Empresa {
             Transaccion transaccion = agregarTransaccion(cuenta, monto, fecha);
             RegistroPuntos registro = new RegistroPuntos(cuenta.getPuntosMonedero(), transaccion);
             cuenta.getListaRegistroPuntos().add(registro);
-        }else if(!permitir && monedero instanceof MonederoDiario){
+        }else if(permitir && monedero instanceof MonederoDiario){
             monedero.setSaldo(saldo - monto);
 
             int puntosGanados = (int) (monto / 100) * 2;

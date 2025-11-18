@@ -7,17 +7,16 @@ import java.util.concurrent.TimeUnit;
 
 public class MonederoAhorro extends Monedero{
     private int retirosRealizados;
-    private int limiteRetiros;
+    private static final int LIMITESRETIROS = 5;
 
     public MonederoAhorro(String nombre, String id, double saldo){
         super(nombre, id, saldo);
         this.retirosRealizados = 0;
-        this.limiteRetiros = 5;
 
     }
     public boolean retirar (Cuenta cuenta){
         boolean flag = false;
-        if(retirosRealizados <= limiteRetiros){
+        if(retirosRealizados <= LIMITESRETIROS){
             System.out.println("limite de retiros alcanzado. Meta de ahorros protegida ");
             flag = true;
         }
@@ -36,7 +35,7 @@ public class MonederoAhorro extends Monedero{
         }else{
             puntosAg = 120;
         }
-        if(retirosRealizados >= limiteRetiros){
+        if(retirosRealizados >= LIMITESRETIROS){
             int finalPuntosAg = puntosAg;
             scheduler.schedule(()->{ cuenta.setPuntosMonedero(cuenta.getPuntosMonedero()+ finalPuntosAg);},delay, TimeUnit.MILLISECONDS);
         }
