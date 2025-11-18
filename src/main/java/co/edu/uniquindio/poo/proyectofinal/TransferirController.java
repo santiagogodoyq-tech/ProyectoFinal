@@ -1,11 +1,14 @@
 package co.edu.uniquindio.poo.proyectofinal;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.*;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.LinkedList;
 
@@ -15,6 +18,8 @@ public class TransferirController {
     @FXML private TextField inputIdDestino;
     @FXML private TextField inputMonto;
     @FXML private Label labelEstado;
+    @FXML private Button btnVolver;
+    @FXML private Button btnTransferir;
 
     @FXML private CheckBox checkProgramar;
     @FXML private DatePicker inputFecha;
@@ -45,6 +50,8 @@ public class TransferirController {
 
         boxFecha.setVisible(false);
         boxFecha.setManaged(false);
+        btnTransferir.setOnAction(event -> {transferir();});
+        btnVolver.setOnAction(event -> {volver();});
     }
 
     @FXML
@@ -142,7 +149,18 @@ public class TransferirController {
 
     @FXML
     private void volver() {
-        Stage stage = (Stage) labelEstado.getScene().getWindow();
-        stage.close();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cuenta.fxml"));
+            Stage stage = (Stage) btnVolver.getScene().getWindow();
+            stage.setScene(new Scene(loader.load()));
+        } catch (IOException e) {
+            mostrar("Error", "No se pudo cargar Cuenta.fxml");
+        }
+    }
+    private void mostrar(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(titulo);
+        alert.setContentText(mensaje);
+        alert.show();
     }
 }

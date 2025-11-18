@@ -230,6 +230,18 @@ public class Empresa {
     }
 
     public void transferir(double monto, Cuenta origen, Cuenta destino, LocalDate fecha, String idMonederoOrigen, String idMonederoDestino) {
+        String idMO = "";
+        String idMD = "";
+        if(idMonederoOrigen.equals("1")){
+            idMO = "2";
+        }else{
+            idMO = "1";
+        }
+        if(idMonederoDestino.equals("1")){
+            idMD = "2";
+        }else{
+            idMD = "1";
+        }
         if (origen == null || destino == null) {
             System.out.println("Cuentas inválidas para transferencia");
             return;
@@ -262,9 +274,18 @@ public class Empresa {
         double nuevoSaldoOrigen = saldoOrigen - monto - comision;
         double nuevoSaldoDestino = saldoDestino + monto;
 
+        Monedero nMOrigen = origen.getListaMonedero().stream().filter(x -> x.getId().equals(idMonederoOrigen)).findFirst().orElse(null);
+        Monedero nMDestino = destino.getListaMonedero().stream().filter(x -> x.getId().equals(idMonederoDestino)).findFirst().orElse(null);
         mOrigen.setSaldo(nuevoSaldoOrigen);
         mDestino.setSaldo(nuevoSaldoDestino);
-
+        LinkedList<Monedero> monederos = new LinkedList<>();
+        LinkedList<Monedero> monederos1 = new LinkedList<>();
+        monederos.add(mOrigen);
+        monederos.add(nMOrigen);
+        monederos1.add(nMDestino);
+        monederos1.add(mDestino);
+        origen.setListaMonedero(monederos);
+        destino.setListaMonedero(monederos1);
         Transaccion transaccion = agregarTransaccion(origen, destino, monto, fecha);
 
         int puntosGanados = (int) ((monto / 100) * 3);

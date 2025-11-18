@@ -50,8 +50,8 @@
 
                     </HBox>
             <HBox spacing="15">
-                <Button onAction="#transferir" style="-fx-background-color: #D4AF37; -fx-text-fill: white;" text="Transferir" />
-                <Button onAction="#volver" style="-fx-background-color: #D4AF37; -fx-text-fill: white;" text="Volver" />
+                <Button fx:id="btnTransferir" onAction="#initialize" style="-fx-background-color: #D4AF37; -fx-text-fill: white;" text="Transferir" />
+                <Button fx:id="btnVolver" onAction="#initialize" style="-fx-background-color: #D4AF37; -fx-text-fill: white;" text="Volver" />
             </HBox>
 
             <Label fx:id="labelEstado" style="-fx-text-fill: red;" text="" />
