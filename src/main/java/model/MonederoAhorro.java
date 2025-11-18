@@ -12,7 +12,7 @@ public class MonederoAhorro extends Monedero{
     public MonederoAhorro(String nombre, String id, double saldo){
         super(nombre, id, saldo);
         this.retirosRealizados = 0;
-        this.limiteRetiros = 0;
+        this.limiteRetiros = 5;
 
     }
     public boolean retirar (Cuenta cuenta){

@@ -165,13 +165,12 @@ public class Empresa {
         }
 
         LinkedList<Monedero> listaMonedero = cuenta.getListaMonedero();
-        Optional<Monedero> opt = listaMonedero.stream().filter(x -> x.getId().equals(idMonedero)).findFirst();
-        if (opt.isEmpty()) {
+        Monedero monedero = listaMonedero.stream().filter(x -> x.getId().equals(idMonedero)).findFirst().orElse(null);
+        if (monedero == null) {
             System.out.println("Monedero no encontrado: " + idMonedero);
             return;
         }
 
-        Monedero monedero = opt.get();
         double saldo = monedero.getSaldo();
 
         boolean permitir = true;
@@ -179,7 +178,7 @@ public class Empresa {
             permitir = ((MonederoAhorro) monedero).retirar(cuenta);
         }
 
-        if (!permitir) {
+        if (permitir) {
             System.out.println("Operación de retiro no permitida por reglas del monedero");
             return;
         }
@@ -188,16 +187,25 @@ public class Empresa {
             System.out.println("Saldo insuficiente");
             return;
         }
+        if(permitir){
+            monedero.setSaldo(saldo - monto);
 
-        monedero.setSaldo(saldo - monto);
+            int puntosGanados = (int) (monto / 100) * 2;
+            cuenta.setPuntosMonedero(cuenta.getPuntosMonedero() + puntosGanados);
 
-        int puntosGanados = (int) (monto / 100) * 2;
-        cuenta.setPuntosMonedero(cuenta.getPuntosMonedero() + puntosGanados);
+            Transaccion transaccion = agregarTransaccion(cuenta, monto, fecha);
+            RegistroPuntos registro = new RegistroPuntos(cuenta.getPuntosMonedero(), transaccion);
+            cuenta.getListaRegistroPuntos().add(registro);
+        }else if(!permitir && monedero instanceof MonederoDiario){
+            monedero.setSaldo(saldo - monto);
 
-        Transaccion transaccion = agregarTransaccion(cuenta, monto, fecha);
-        RegistroPuntos registro = new RegistroPuntos(cuenta.getPuntosMonedero(), transaccion);
-        cuenta.getListaRegistroPuntos().add(registro);
+            int puntosGanados = (int) (monto / 100) * 2;
+            cuenta.setPuntosMonedero(cuenta.getPuntosMonedero() + puntosGanados);
 
+            Transaccion transaccion = agregarTransaccion(cuenta, monto, fecha);
+            RegistroPuntos registro = new RegistroPuntos(cuenta.getPuntosMonedero(), transaccion);
+            cuenta.getListaRegistroPuntos().add(registro);
+        }
         if (cuenta.getCliente() != null && cuenta.getCliente().getEmail() != null) {
             EmailService emailService = new EmailService();
             emailService.enviarCorreo(

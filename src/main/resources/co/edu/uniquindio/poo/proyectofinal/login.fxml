@@ -36,7 +36,7 @@
                 </VBox>
 
                 <Button fx:id="btnLogin" onAction="#initialize" prefWidth="220" style="-fx-font-size: 16px; -fx-background-color: #D4AF37; -fx-text-fill: black; -fx-background-radius: 8;" text="Ingresar" />
-                <Button fx:id="btnVolver" onAction="#initialize" prefWidth="220" style="-fx-font-size: 16px; -fx-background-color: #D4AF37; -fx-text-fill: black; -fx-background-radius: 8;" text="Ingresar" />
+                <Button fx:id="btnVolver" onAction="#initialize" prefWidth="220" style="-fx-font-size: 16px; -fx-background-color: #D4AF37; -fx-text-fill: black; -fx-background-radius: 8;" text="Regresar" />
 
             </children>
         </VBox>

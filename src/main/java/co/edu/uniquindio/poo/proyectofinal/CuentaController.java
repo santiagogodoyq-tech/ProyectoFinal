@@ -33,11 +33,11 @@ public class CuentaController {
 
     @FXML
     public void initialize() {
-        btnDepositar.setOnAction(e -> {abrirVentanaDeposito(); cerrarSesion();});
-        btnRetirar.setOnAction(e -> {abrirVentanaRetiro();cerrarSesion();});
-        btnTransferir.setOnAction(e -> {abrirVentanaTransferencia();cerrarSesion();});
-        btnHistorialTransacciones.setOnAction(e -> {abrirHistorialTransacciones();cerrarSesion();});
-        btnHistorialPuntos.setOnAction(e -> {abrirHistorialPuntos();cerrarSesion();});
+        btnDepositar.setOnAction(e -> {abrirVentanaDeposito();cerrarVentana();});
+        btnRetirar.setOnAction(e -> {abrirVentanaRetiro();cerrarVentana();});
+        btnTransferir.setOnAction(e -> {abrirVentanaTransferencia();cerrarVentana();});
+        btnHistorialTransacciones.setOnAction(e -> {abrirHistorialTransacciones();cerrarVentana();});
+        btnHistorialPuntos.setOnAction(e -> {abrirHistorialPuntos();cerrarVentana();});
         btnCanjearPuntos.setOnAction(e -> abrirCanje());
         btnCerrarSesion.setOnAction(e -> cerrarSesion());
         setCliente();
@@ -97,9 +97,15 @@ public class CuentaController {
         abrirVentana("canjear_puntos.fxml", "Canje de Puntos");
     }
     @FXML
-    private void cerrarVentana() throws IOException {
-        Stage stage = (Stage) btnCerrarSesion.getScene().getWindow(); // sirve cualquiera
-        stage.close();
+    private void cerrarVentana(){
+        try {
+
+
+            Stage stage = (Stage) btnCerrarSesion.getScene().getWindow(); // sirve cualquiera
+            stage.close();
+        }catch(Exception e){
+            mostrarAlerta("Error", "No se pudo cerrar la ventana.");
+        }
     }
 
     private void abrirVentana(String fxml, String titulo) {
@@ -137,11 +143,11 @@ public class CuentaController {
         int puntos = cuenta.getPuntosMonedero();
 
         String rango;
-        if (puntos >= 1000) {
+        if (puntos > 5000) {
             rango = "Platino";
-        } else if (puntos >= 500) {
+        } else if (puntos > 1000) {
             rango = "Oro";
-        } else if (puntos >= 200) {
+        } else if (puntos > 500) {
             rango = "Plata";
         } else {
             rango = "Bronce";
