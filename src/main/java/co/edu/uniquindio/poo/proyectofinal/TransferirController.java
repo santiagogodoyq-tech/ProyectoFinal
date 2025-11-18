@@ -67,7 +67,7 @@ public class TransferirController {
             cuentaDestino = null;
             return;
         }
-        cuentaDestino = AppData.empresa.buscarCuenta(id).orElse(null);
+        cuentaDestino = AppData.empresa.getListaCuentas().stream().filter(x -> x.getCodigo().equals(id)).findFirst().orElse(null);
     }
 
     @FXML
@@ -86,8 +86,8 @@ public class TransferirController {
         }
 
         String idMonedero = comboCuentaTipo.getValue().equals("Monedero Diario") ? "1" : "2";
-        Monedero mon = cuenta.getListaMonedero()
-                .stream().filter(x -> x.getId().equals(idMonedero))
+        LinkedList<Monedero> listaMonederos = cuenta.getListaMonedero();
+        Monedero mon = listaMonederos.stream().filter(x -> x.getId().equals(idMonedero))
                 .findFirst().orElse(null);
 
         if (mon == null) {

@@ -10,7 +10,7 @@ public class AppData {
     public static Cuenta cuentaPrueba;
 
     static {
-        empresa = new Empresa("Coint Master Bank", "washingtong", "12344");
+        empresa = new Empresa("Point Master Bank", "washingtong", "12344");
         clientePrueba = new Cliente("1092458884","Sara Benjumea Gallego","sbenjumeagallego@gmail.com","3244933362","frison");
         cuentaPrueba = new Bronce(clientePrueba, clientePrueba.getId(), clientePrueba.getNombre(), clientePrueba.getContraseña());
         empresa.agregarCuenta(cuentaPrueba);

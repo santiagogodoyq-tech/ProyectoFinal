@@ -165,20 +165,21 @@ public class Empresa {
         }
 
         LinkedList<Monedero> listaMonedero = cuenta.getListaMonedero();
-        Monedero monedero = listaMonedero.stream().filter(x -> x.getId().equals(idMonedero)).findFirst().orElse(null);
-        if (monedero == null) {
+        Optional<Monedero> opt = listaMonedero.stream().filter(x -> x.getId().equals(idMonedero)).findFirst();
+        if (opt.isEmpty()) {
             System.out.println("Monedero no encontrado: " + idMonedero);
             return;
         }
 
+        Monedero monedero = opt.get();
         double saldo = monedero.getSaldo();
 
-        boolean permitir = false;
+        boolean permitir = true;
         if (monedero instanceof MonederoAhorro) {
             permitir = ((MonederoAhorro) monedero).retirar(cuenta);
         }
 
-        if (permitir) {
+        if (!permitir) {
             System.out.println("Operación de retiro no permitida por reglas del monedero");
             return;
         }
@@ -187,25 +188,16 @@ public class Empresa {
             System.out.println("Saldo insuficiente");
             return;
         }
-        if(!permitir){
-            monedero.setSaldo(saldo - monto);
 
-            int puntosGanados = (int) (monto / 100) * 2;
-            cuenta.setPuntosMonedero(cuenta.getPuntosMonedero() + puntosGanados);
+        monedero.setSaldo(saldo - monto);
 
-            Transaccion transaccion = agregarTransaccion(cuenta, monto, fecha);
-            RegistroPuntos registro = new RegistroPuntos(cuenta.getPuntosMonedero(), transaccion);
-            cuenta.getListaRegistroPuntos().add(registro);
-        }else if(permitir && monedero instanceof MonederoDiario){
-            monedero.setSaldo(saldo - monto);
+        int puntosGanados = (int) (monto / 100) * 2;
+        cuenta.setPuntosMonedero(cuenta.getPuntosMonedero() + puntosGanados);
 
-            int puntosGanados = (int) (monto / 100) * 2;
-            cuenta.setPuntosMonedero(cuenta.getPuntosMonedero() + puntosGanados);
+        Transaccion transaccion = agregarTransaccion(cuenta, monto, fecha);
+        RegistroPuntos registro = new RegistroPuntos(cuenta.getPuntosMonedero(), transaccion);
+        cuenta.getListaRegistroPuntos().add(registro);
 
-            Transaccion transaccion = agregarTransaccion(cuenta, monto, fecha);
-            RegistroPuntos registro = new RegistroPuntos(cuenta.getPuntosMonedero(), transaccion);
-            cuenta.getListaRegistroPuntos().add(registro);
-        }
         if (cuenta.getCliente() != null && cuenta.getCliente().getEmail() != null) {
             EmailService emailService = new EmailService();
             emailService.enviarCorreo(
@@ -215,6 +207,7 @@ public class Empresa {
             );
         }
     }
+
 
     public double consultarSaldo(Cuenta cuenta, String idMonedero) {
         if (cuenta == null) return 0;
@@ -315,29 +308,31 @@ public class Empresa {
         }
     }
 
-    public Cuenta actualizarRango(Cuenta cuenta, String id) {
+    public Cuenta actualizarRango(Cuenta cuenta) {
         if (cuenta == null) return null;
-        LinkedList<Monedero> listaMonedero = cuenta.getListaMonedero();
-        Optional<Monedero> opt = listaMonedero.stream().filter(x -> x.getId().equals(id)).findFirst();
-        double saldo = opt.map(Monedero::getSaldo).orElse(0.0);
         Cuenta cuentaExp = cuenta;
         int puntos = cuenta.getPuntosMonedero();
+        boolean flag = false;
 
         if (puntos <= 500 && !(cuenta instanceof Bronce)) {
             Cuenta nuevaCuenta = new Bronce(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre(), cuenta.getContraseña());
             cuentaExp = nuevaCuenta;
+            flag = true;
         } else if (puntos > 500 && puntos <= 1000 && !(cuenta instanceof Plata)) {
             Cuenta nuevaCuenta = new Plata(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre(), cuenta.getContraseña());
             cuentaExp = nuevaCuenta;
+            flag = true;
         } else if (puntos > 1000 && pointsLessOrEqual(puntos, 5000) && !(cuenta instanceof Oro)) {
             Cuenta nuevaCuenta = new Oro(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre(), cuenta.getContraseña());
             cuentaExp = nuevaCuenta;
+            flag = true;
         } else if (puntos <= 5000 && !(cuenta instanceof Platino)) {
             Cuenta nuevaCuenta = new Platino(cuenta.getCliente(), cuenta.getCodigo(), cuenta.getNombre(), cuenta.getContraseña());
             cuentaExp = nuevaCuenta;
+            flag = true;
         }
 
-        if (cuentaExp != cuenta) {
+        if (flag) {
             cuentaExp.setPuntosMonedero(cuenta.getPuntosMonedero());
             cuentaExp.setListaTransacciones(cuenta.getListaTransacciones());
             cuentaExp.setListaMonedero(cuenta.getListaMonedero());
@@ -361,13 +356,12 @@ public class Empresa {
         LocalDate hoy = LocalDate.now();
         long days = ChronoUnit.DAYS.between(hoy, fechaIngresada);
         if (days <= 0) {
-            // fecha pasada o hoy -> ejecutar de inmediato
             transferir(monto, cuenta, cuenta2, fechaIngresada, id, id2);
             return;
         }
 
         long delayMillis = days * 24L * 60L * 60L * 1000L;
-        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
         scheduler.schedule(() -> transferir(monto, cuenta, cuenta2, fechaIngresada, id, id2),
                 delayMillis, TimeUnit.MILLISECONDS);
         scheduler.shutdown();
@@ -437,7 +431,7 @@ public class Empresa {
     }
 
     public void iniciarVerificadorBeneficios() {
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
         scheduler.scheduleAtFixedRate(() -> {
             for (Cuenta cuenta : ListaCuentas) {
                 if (cuenta.getBeneficioActivo() != null &&

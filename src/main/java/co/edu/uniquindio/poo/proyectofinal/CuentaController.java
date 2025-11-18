@@ -141,6 +141,7 @@ public class CuentaController {
     }
     private void actualizarRango() {
         int puntos = cuenta.getPuntosMonedero();
+        AppData.empresa.actualizarRango(cuenta);
 
         String rango;
         if (puntos > 5000) {

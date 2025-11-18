@@ -1,0 +1,149 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Empresa {
+    -int count
+    -LinkedList<Cliente> ListaClientes
+    -LinkedList<Cuenta> ListaCuentas
+    -LinkedList<Transaccion> ListaTransacciones
+    -String nombre
+    -String direccion
+    -String NIT
+     +Empresa(nombre, direccion, NIT)
+        +agregarCliente()
+        +buscarCliente()
+        +eliminarCliente()
+        +agregarCuenta()
+        +buscarCuenta()
+        +eliminarCuenta()
+        +depositar()
+        +retirar()
+        +transferir()
+        +transferenciaProgramada()
+        +consultarSaldo()
+        +consultarHistorial()
+        +canjearBeneficio()
+        +beneficioVigente()
+        +iniciarVerificadorBeneficios()
+        +actualizarRango()
+}
+
+class Cliente {
+    -String id
+    -String nombre
+    -String email
+    -String celular
+    -String contraseña
+    -LinkedList<Cuenta> ListaCuentas
+}
+
+abstract class Cuenta {
+    #Cliente cliente
+    #String codigo
+    #String nombre
+    #LinkedList<Monedero> ListaMonedero
+    #int puntosMonedero
+    #LinkedList<Transaccion> ListaTransacciones
+    #double descuento
+    #double porcentajeTran
+    #String beneficioActivo
+    #LocalDate fechaExpiracionBeneficio
+    #LinkedList<RegistroPuntos> ListaRegistroPuntos
+    #String contraseña
+
+    +Cuenta(cliente, codigo, nombre, contraseña)
+    +getters/setters...
+    +aplicarDescuento()
+    +asignarPorcentaje()
+}
+
+class Bronce {
+    +Bronce(cliente, codigo, nombre, contraseña)
+    +aplicarDescuento()
+    +asignarPorcentaje()
+}
+
+class Plata {
+    +Plata(cliente, codigo, nombre, contraseña)
+    +aplicarDescuento()
+    +asignarPorcentaje()
+}
+
+class Oro {
+    +Oro(cliente, codigo, nombre, contraseña)
+    +aplicarDescuento()
+    +asignarPorcentaje()
+}
+
+class Platino {
+    +Platino(cliente, codigo, nombre, contraseña)
+    +aplicarDescuento()
+    +asignarPorcentaje()
+}
+
+class Monedero {
+    -String id
+    -double saldo
+     +getId()
+        +getSaldo()
+        +setSaldo()
+}
+
+class MonederoAhorro{
+                        +retirar(cuenta)
+                    }
+
+abstract class Transaccion {
+    -String id
+    -double monto
+    -Cuenta cuenta
+    -LocalDate fecha
+     +TransaccionDepRet(id, monto, cuenta, fecha)
+}
+
+class TransaccionDepRet
+class TransaccionTran {
+    -Cuenta cuentaDestino
+     +TransaccionTran(id, monto, cuentaSalida, fecha, entrada)
+}
+
+class RegistroPuntos {
+    -int puntosFinales
+    -Transaccion transaccion
+    +RegistroPuntos(puntos, transaccion)
+}
+
+class EmailService {
+    -String correoEmisor
+    -String claveApp
+    -Session crearSession()
+        +enviarCorreo(destinatario, asunto, cuerpo)
+}
+
+Empresa -- "0.." Cliente
+Empresa -- "0.." Cuenta
+Empresa -- "0.." Transaccion
+
+Empresa o-- EmailService : usa
+
+Cuenta <|-- Bronce
+Cuenta <|-- Plata
+Cuenta <|-- Oro
+Cuenta <|-- Platino
+
+Monedero <|-- MonederoAhorro
+Transaccion <|-- TransaccionDepRet
+Transaccion <|-- TransaccionTran
+
+Cliente o-- "0..*" Cuenta : posee
+
+Cuenta -- "0.." Monedero : contiene
+Cuenta -- "0.." Transaccion : registra
+Cuenta -- "0.." RegistroPuntos : acumula
+
+TransaccionTran --> Cuenta : destino
+
+Cuenta ..> Monedero
+Cuenta ..> Transaccion
+Empresa ..> EmailService
+@enduml
