@@ -38,11 +38,10 @@ public class CuentaController {
         btnHistorialPuntos.setOnAction(e -> abrirHistorialPuntos());
         btnCanjearPuntos.setOnAction(e -> abrirCanje());
         btnCerrarSesion.setOnAction(e -> cerrarSesion());
+        setCliente();
     }
 
-    public void setCliente(Cliente cliente) {
-
-        this.cliente = cliente;
+    public void setCliente() {
         cliente = AppData.clienteActual;
 
         if (cliente == null) {
