@@ -14,4 +14,8 @@ public class Plata extends Cuenta{
     public double asignarPorcentaje() {
         return 0.05;
     }
+    @Override
+    public String setRango() {
+        return "Plata";
+    }
 }

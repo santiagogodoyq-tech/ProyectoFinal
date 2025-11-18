@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" alignment="CENTER" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="co.edu.uniquindio.poo.proyectofinal.CanjearPuntosController">
+
+    <padding>
+        <Insets top="20" left="20" right="20" bottom="20"/>
+    </padding>
+
+    <Label text="Canjear Puntos" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <Label fx:id="labelPuntos" text="Puntos actuales: 0"/>
+
+    <HBox spacing="10">
+        <Label text="Seleccione Monedero:"/>
+        <ComboBox fx:id="comboMonedero" prefWidth="200"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="Puntos a canjear:"/>
+        <TextField fx:id="inputPuntos" promptText="Ej: 100 | 500 | 1000"/>
+    </HBox>
+
+    <Button text="Canjear" onAction="#canjear"/>
+
+    <Label fx:id="labelResultado" style="-fx-text-fill: #0077cc; -fx-font-size: 14px;"/>
+
+</VBox>

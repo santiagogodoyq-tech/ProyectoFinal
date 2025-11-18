@@ -15,4 +15,8 @@ public class TransaccionTran extends Transaccion {
     public void setEntrada(Cuenta entrada) {
         this.entrada = entrada;
     }
+    @Override
+    public void setTipo(){
+        tipo = "Programada";
+    }
 }

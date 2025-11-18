@@ -71,6 +71,7 @@ public class ClientController {
         Cuenta nuevoCuenta;
         nuevoCuenta = new Bronce(nuevoCliente, count, nombre, contrasena);
         AppData.empresa.agregarCuenta(nuevoCuenta);
+        AppData.clienteActual.getListaCuentas().add(nuevoCuenta);
         AppData.count++;
         mostrarAlerta(Alert.AlertType.INFORMATION,
                 AppData.empresa.getNombre());

@@ -113,6 +113,12 @@ public class Empresa {
         cuentaBuscado = buscarCuenta(cuenta.getCodigo());
         if (cuentaBuscado.isEmpty()) {
             ListaCuentas.add(cuenta);
+            LinkedList<Monedero> listaMonedero = new LinkedList<>();
+            Monedero monedero = new MonederoAhorro("ahorro","1",0);
+            Monedero monedero1 = new MonederoDiario("diario","2",0);
+            listaMonedero.add(monedero);
+            listaMonedero.add(monedero1);
+            cuenta.setListaMonedero(listaMonedero);
             respuesta = "la cuenta se a agregado con exito";
         } else {
             respuesta = "la cuenta ya esta registrado";
@@ -277,7 +283,7 @@ public class Empresa {
             });
             cuenta.setListaMonedero(listaMonedero);
             listaMonedero2.forEach(x -> {
-                if (x.getId().equals(id)) {
+                if (x.getId().equals(id2)) {
                     x.setSaldo(nuevoSaldoDestino);
                 }
             });

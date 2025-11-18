@@ -8,186 +8,120 @@ import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class CuentaController {
 
-    // ====== LABELS PRINCIPALES ======
-    @FXML private Label labelNombreCliente;
-    @FXML private Label labelSaldo;
-    @FXML private Label labelRango;
-    @FXML private Label labelPuntos;
+    @FXML private Label lblNombreCliente;
+    @FXML private Label lblRango;
 
-    // ====== CAMPOS DE OPERACIONES ======
-    @FXML private TextField inputDepositar;
-    @FXML private TextField inputRetirar;
-    @FXML private TextField inputTransferirMonto;
-    @FXML private TextField inputTransferirId;
+    @FXML private Label lblSaldoPrincipal;
+    @FXML private Label lblSaldoAhorros;
 
-    // ====== HISTORIAL ======
-    @FXML private TextArea areaHistorial;
-    @FXML private TextArea areaHistorialPuntos;
+    @FXML private Button btnCerrarSesion;
+    @FXML private Button btnDepositar;
+    @FXML private Button btnRetirar;
+    @FXML private Button btnTransferir;
+    @FXML private Button btnHistorialTransacciones;
+    @FXML private Button btnHistorialPuntos;
+    @FXML private Button btnCanjearPuntos;
 
     private Cliente cliente;
     private Cuenta cuenta;
 
-    // ===============================================================
-    // ESTE MÉTODO LO LLAMAS DESPUÉS DE CARGAR EL FXML DESDE Login
-    // ===============================================================
-    public void setClienteYCuenta(Cliente cliente, Cuenta cuenta) {
-        this.cliente = cliente;
-        this.cuenta = cuenta;
-        actualizarVista();
-    }
-
     @FXML
     public void initialize() {
-        // IMPORTANTE:
-        // No puedes usar cliente o cuenta aquí porque todavía no existen.
-        // Solo se inicializa cuando setClienteYCuenta es llamado.
+
+        cliente = AppData.clienteActual;
+
+        if (cliente == null) {
+            mostrarAlerta("Error grave", "No hay cliente en sesión.");
+            return;
+        }
+        LinkedList<Cuenta> listaCuenta = cliente.getListaCuentas();
+        Cuenta cuenta = listaCuenta.stream().findFirst().orElse(null);
+
+        actualizarVista();
+
+        // ========================
+        //   EVENTOS DE BOTONES
+        // ========================
+        btnDepositar.setOnAction(e -> abrirVentanaDeposito());
+        btnRetirar.setOnAction(e -> abrirVentanaRetiro());
+        btnTransferir.setOnAction(e -> abrirVentanaTransferencia());
+        btnHistorialTransacciones.setOnAction(e -> abrirHistorialTransacciones());
+        btnHistorialPuntos.setOnAction(e -> abrirHistorialPuntos());
+        btnCanjearPuntos.setOnAction(e -> abrirCanje());
+        btnCerrarSesion.setOnAction(e -> cerrarSesion());
     }
 
-    // ===============================================================
-    //             ACTUALIZAR DATOS EN PANTALLA
-    // ===============================================================
+    // =========================================
+    //   ACTUALIZA LABELS Y DATOS EN LA PANTALLA
+    // =========================================
     private void actualizarVista() {
-        labelNombreCliente.setText(cliente.getNombre());
-        labelSaldo.setText("$ " + cuenta.getSaldo());
-        labelRango.setText(cuenta.getRango().getNombre());
-        labelPuntos.setText("" + cuenta.getPuntos());
 
-        cargarHistorial();
-        cargarHistorialPuntos();
+        lblNombreCliente.setText(cliente.getNombre());
+        lblRango.setText("Rango: " + cuenta.getRango());
+        LinkedList<Monedero> listaMonedero = cuenta.getListaMonedero();
+        String id = "1";
+        String id1 = "2";
+        lblSaldoPrincipal.setText(String.format("$ %.2f", listaMonedero.stream().filter(x->x.getId().equals(id)).findFirst().get().getSaldo()));
+        lblSaldoAhorros.setText(String.format("$ %.2f", listaMonedero.stream().filter(x->x.getId().equals(id1)).findFirst().get().getSaldo()));
     }
 
-    private void cargarHistorial() {
-        StringBuilder sb = new StringBuilder();
-        cuenta.getHistorial().forEach(t -> sb.append(t).append("\n"));
-        areaHistorial.setText(sb.toString());
+    private void abrirVentanaDeposito() {
+        abrirVentana("DepositView.fxml", "Depositar Dinero");
     }
 
-    private void cargarHistorialPuntos() {
-        StringBuilder sb = new StringBuilder();
-        cuenta.getHistorialPuntos().forEach(p -> sb.append(p).append("\n"));
-        areaHistorialPuntos.setText(sb.toString());
+    private void abrirVentanaRetiro() {
+        abrirVentana("retirar.fxml", "Retirar Dinero");
     }
 
-    // ===============================================================
-    //                      DEPÓSITO
-    // ===============================================================
-    @FXML
-    private void depositar() {
+    private void abrirVentanaTransferencia() {
+        abrirVentana("transferir.fxml", "Transferir Dinero");
+    }
+
+    private void abrirHistorialTransacciones() {
+        abrirVentana("historialTransacciones.fxml", "Historial de Transacciones");
+    }
+
+    private void abrirHistorialPuntos() {
+        abrirVentana("HistorialPuntos.fxml", "Historial de Puntos");
+    }
+
+    private void abrirCanje() {
+        abrirVentana("canje.fxml", "Canje de Puntos");
+    }
+
+    private void abrirVentana(String fxml, String titulo) {
         try {
-            double monto = Double.parseDouble(inputDepositar.getText());
-
-            if (monto <= 0) {
-                alert("Error", "El monto debe ser mayor que 0");
-                return;
-            }
-
-            cuenta.depositar(monto);
-            actualizarVista();
-
-        } catch (NumberFormatException e) {
-            alert("Error", "Ingrese un número válido");
-        }
-    }
-
-    // ===============================================================
-    //                      RETIRO
-    // ===============================================================
-    @FXML
-    private void retirar() {
-        try {
-            double monto = Double.parseDouble(inputRetirar.getText());
-
-            if (monto <= 0) {
-                alert("Error", "El monto debe ser mayor que 0");
-                return;
-            }
-
-            if (!cuenta.retirar(monto)) {
-                alert("Error", "No hay saldo suficiente");
-                return;
-            }
-
-            actualizarVista();
-
-        } catch (NumberFormatException e) {
-            alert("Error", "Ingrese un número válido");
-        }
-    }
-
-    // ===============================================================
-    //                      TRANSFERENCIA
-    // ===============================================================
-    @FXML
-    private void transferir() {
-
-        try {
-            double monto = Double.parseDouble(inputTransferirMonto.getText());
-            String idDestino = inputTransferirId.getText();
-
-            Cliente destino = AppData.empresa.buscarCliente(idDestino);
-
-            if (destino == null) {
-                alert("Error", "El cliente destino no existe");
-                return;
-            }
-
-            if (!cuenta.transferir(destino.getCuenta(), monto)) {
-                alert("Error", "Saldo insuficiente");
-                return;
-            }
-
-            actualizarVista();
-
-        } catch (NumberFormatException e) {
-            alert("Error", "Monto inválido");
-        }
-    }
-
-    // ===============================================================
-    //                      CANJE DE PUNTOS
-    // ===============================================================
-    @FXML
-    private void abrirCanjePuntos() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("canje.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Stage stage = new Stage();
+            stage.setTitle(titulo);
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Canje de puntos");
             stage.show();
-
-            // Si necesitas pasar el cliente:
-            // CanjeController controller = loader.getController();
-            // controller.setCliente(cliente);
-
         } catch (IOException e) {
-            alert("Error", "No se pudo abrir la ventana de canje");
+            mostrarAlerta("Error", "No se pudo abrir la ventana: " + fxml);
         }
     }
 
-    // ===============================================================
-    //                      CERRAR SESIÓN
-    // ===============================================================
-    @FXML
     private void cerrarSesion() {
         try {
+            AppData.clienteActual = null;
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("inicio.fxml"));
-            Stage stage = (Stage) labelNombreCliente.getScene().getWindow();
+            Stage stage = (Stage) lblNombreCliente.getScene().getWindow();
             stage.setScene(new Scene(loader.load()));
+
         } catch (IOException e) {
-            alert("Error", "No se pudo cerrar sesión");
+            mostrarAlerta("Error", "No se pudo cerrar sesión.");
         }
     }
-
-    // ===============================================================
-    //                      ALERTAS
-    // ===============================================================
-    private void alert(String title, String msg) {
-        Alert a = new Alert(Alert.AlertType.WARNING);
-        a.setTitle(title);
-        a.setContentText(msg);
-        a.show();
+    private void mostrarAlerta(String title, String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle(title);
+        alert.setContentText(msg);
+        alert.showAndWait();
     }
 }

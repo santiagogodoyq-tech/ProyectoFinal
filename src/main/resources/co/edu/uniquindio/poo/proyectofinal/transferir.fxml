@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="252.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.proyectofinal.TransferirController">
+
+    <children>
+        <ImageView fitHeight="320" fitWidth="420" preserveRatio="false" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+            <image>
+                <Image url="@background.png" />
+            </image>
+        </ImageView>
+        <VBox layoutX="40" layoutY="30" spacing="15">
+
+            <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Transferir entre cuentas" textFill="#D4AF37" />
+
+            <HBox spacing="10">
+                <Label text="Tipo Cuenta:" textFill="#D4AF37" />
+                <ComboBox fx:id="comboCuentaTipo" prefWidth="250">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Monedero Diario" />
+                            <String fx:value="Monedero Ahorros" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="ID Cuenta Destino:" textFill="#D4AF37" />
+                <TextField fx:id="inputIdDestino" promptText="Ingrese el id destino" />
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Monto a transferir:" textFill="#D4AF37" />
+                <TextField fx:id="inputMonto" promptText="Ingrese el valor" />
+            </HBox>
+            <HBox spacing="10">
+                        <CheckBox fx:id="checkProgramar" text="Programar transferencia" textFill="#D4AF37"
+                                  onAction="#toggleProgramar"/>
+                    </HBox>
+
+                    <HBox spacing="10" fx:id="boxFecha" visible="false" managed="false">
+                        <Label text="Fecha programada:" textFill="#D4AF37"/>
+                        <DatePicker fx:id="inputFecha"/>
+
+                    </HBox>
+            <HBox spacing="15">
+                <Button onAction="#transferir" style="-fx-background-color: #D4AF37; -fx-text-fill: white;" text="Transferir" />
+                <Button onAction="#volver" style="-fx-background-color: #D4AF37; -fx-text-fill: white;" text="Volver" />
+            </HBox>
+
+            <Label fx:id="labelEstado" style="-fx-text-fill: red;" text="" />
+        </VBox>
+
+        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="340.0" layoutY="-4.0">
+            <image>
+                <Image url="@logo.jpg" />
+            </image>
+        </ImageView>
+    </children>
+
+</AnchorPane>

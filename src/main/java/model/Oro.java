@@ -13,4 +13,8 @@ public class Oro extends Cuenta {
     public double asignarPorcentaje() {
         return 0.025;
     }
+    @Override
+    public String setRango() {
+        return "Oro";
+    }
 }

@@ -12,5 +12,8 @@ public class Bronce extends Cuenta {
     public double asignarPorcentaje() {
         return 0.1;
     }
-
+    @Override
+    public String setRango() {
+         return "Bronce";
+    }
 }

@@ -16,6 +16,7 @@ public abstract class Cuenta {
     protected LocalDate fechaExpiracionBeneficio;
     protected LinkedList<RegistroPuntos> ListaRegistroPuntos;
     protected String contraseña;
+    protected String rango;
 
 
 
@@ -32,6 +33,7 @@ public abstract class Cuenta {
         this.fechaExpiracionBeneficio = LocalDate.now();
         this.ListaRegistroPuntos = new LinkedList<>();
         this.contraseña = contraseña;
+        rango = setRango();
     }
 
     public LinkedList<RegistroPuntos> getListaRegistroPuntos() {
@@ -128,7 +130,10 @@ public abstract class Cuenta {
     public void setFechaExpiracionBeneficio(LocalDate fechaExpiracionBeneficio) {
         this.fechaExpiracionBeneficio = fechaExpiracionBeneficio;
     }
-
+    public String getRango(){
+        return rango;
+    }
     public abstract void aplicarDescuento ();
     public abstract double asignarPorcentaje();
+    public abstract String setRango();
 }

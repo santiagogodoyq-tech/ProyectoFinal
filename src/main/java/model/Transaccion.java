@@ -1,19 +1,23 @@
 package model;
 
 import java.time.LocalDate;
-
-public class Transaccion {
-    private String id;
-    private double monto;
-    private Cuenta salida;
-    private LocalDate fecha;
+//perdon, que paso? DE QUE? no vio lo que le paso al codigo? yO LO VEO NOR JAJAJAJAJAJAJ BUENO  okey mañana le cuento que paso
+public abstract class Transaccion{
+    protected String id;
+    protected double monto;
+    protected Cuenta salida;
+    protected LocalDate fecha;
+    protected String tipo;
     public Transaccion(String id,double monto, Cuenta salida, LocalDate fecha) {
         this.id = id;
         this.monto = monto;
         this.salida = salida;
         this.fecha = fecha;
+        setTipo();
     }
-
+    public String getTipo(){
+        return tipo;
+    }
     public String getId() {
         return id;
     }
@@ -45,4 +49,5 @@ public class Transaccion {
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
+    public abstract void setTipo();
 }

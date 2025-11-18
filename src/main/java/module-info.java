@@ -16,6 +16,7 @@ module co.edu.uniquindio.poo.proyectofinal {
     requires jakarta.mail;
     requires javafx.graphics;
     requires java.desktop;
+    requires co.edu.uniquindio.poo.proyectofinal;
 
     opens co.edu.uniquindio.poo.proyectofinal to javafx.fxml;
     exports co.edu.uniquindio.poo.proyectofinal;

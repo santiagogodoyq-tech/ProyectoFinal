@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefWidth="800" prefHeight="500"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="co.edu.uniquindio.poo.proyectofinal.HistorialTransController">
+
+    <children>
+
+        <!-- Fondo -->
+        <ImageView fitWidth="800" fitHeight="500" preserveRatio="false"
+                   AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0">
+            <image>
+                <Image url="@background.png"/>
+            </image>
+        </ImageView>
+
+        <VBox spacing="15" layoutX="50" layoutY="40"
+              style="-fx-background-color: rgba(0,0,0,0.55); -fx-padding: 20; -fx-background-radius: 10;">
+
+            <Label text="Historial de Transacciones"
+                   style="-fx-font-size: 26px; -fx-text-fill: #D4AF37; -fx-font-weight: bold;"/>
+
+            <!-- TABLA -->
+            <TableView fx:id="tablaTrans" prefWidth="700" prefHeight="350">
+
+                <columns>
+
+                    <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
+                    <TableColumn fx:id="colFecha" text="Fecha" prefWidth="130"/>
+                    <TableColumn fx:id="colMonto" text="Monto" prefWidth="120"/>
+                    <TableColumn fx:id="colTipo" text="Tipo" prefWidth="180"/>
+                    <TableColumn fx:id="colCuenta" text="Cuenta" prefWidth="180"/>
+
+                </columns>
+
+            </TableView>
+
+            <Button text="Volver"
+                    onAction="#volver"
+                    style="-fx-background-color: #D4AF37; -fx-text-fill: black; -fx-background-radius: 8;"
+                    prefWidth="150"/>
+        </VBox>
+
+        <!-- Logo -->
+        <ImageView fitHeight="70" fitWidth="70" layoutX="720" layoutY="10">
+            <image>
+                <Image url="@logo.jpg"/>
+            </image>
+        </ImageView>
+
+    </children>
+
+</AnchorPane>

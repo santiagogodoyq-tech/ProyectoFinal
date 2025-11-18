@@ -15,5 +15,9 @@ public class Platino extends Cuenta{
     public double asignarPorcentaje() {
         return 0.01;
     }
+    @Override
+    public String setRango() {
+        return "Platino";
+    }
 }
 
